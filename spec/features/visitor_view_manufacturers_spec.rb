@@ -2,13 +2,16 @@ require 'rails_helper'
 
 feature 'Visitor view manufacturers' do
   scenario 'successfully' do
-    Manufacturer.create(name: 'Fiat')
-    Manufacturer.create(name: 'Volkswagen')
+    # Arrange
+    Manufacturer.create!(name: 'Fiat')
+    Manufacturer.create!(name: 'Volkswagen')
 
+    # Act
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
-
+  
+    # Assert
     expect(page).to have_content('Fiat')
     expect(page).to have_link('Voltar')
   end
