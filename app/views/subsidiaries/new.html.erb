@@ -1,0 +1,11 @@
+<h1>Nova Filial</h1>
+
+<%= form_for @subsidiary do |f| %>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+    <%= f.label :cnpj, 'CNPJ' %>
+    <%= f.text_field :cnpj %>
+    <%= f.label :address, 'Endereço' %>
+    <%= f.text_field :address %>
+    <%= f.submit 'Enviar' %>
+<% end %>
