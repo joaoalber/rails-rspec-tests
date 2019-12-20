@@ -17,8 +17,8 @@ feature 'Visitor view manufacturers' do
   end
 
   scenario 'and return to home page' do
-    Manufacturer.create(name: 'Fiat')
-    Manufacturer.create(name: 'Volkswagen')
+    Manufacturer.create!(name: 'Fiat')
+    Manufacturer.create!(name: 'Volkswagen')
 
     visit root_path
     click_on 'Fabricantes'
