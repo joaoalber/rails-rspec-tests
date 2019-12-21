@@ -30,6 +30,13 @@ class SubsidiariesController < ApplicationController
         redirect_to @subsidiary
     end
 
+    def destroy
+        @subsidiary = Subsidiary.find(params[:id])
+        @subsidiary.destroy!
+        flash[:notice] = 'Filial deletada com sucesso'
+        redirect_to root_path
+    end
+
     private
 
     def subsidiary_params
