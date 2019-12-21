@@ -22,6 +22,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+# CNPJ/CPF Validator
+gem 'validators'
+gem "cpf_cnpj"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

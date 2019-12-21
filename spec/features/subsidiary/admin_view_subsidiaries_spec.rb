@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'Admin view subsidiaries' do
   scenario 'successfully' do
     # Arrange
-    Subsidiary.create!(name: 'Concessionária BR', cnpj: '123456', address: 'r. dos tamoios')
-    Subsidiary.create!(name: 'Concessionária EU', cnpj: '654321', address: 'r. dos araguaias')
+    Subsidiary.create!(name: 'Concessionária BR', cnpj: '97.799.796/0001-26', address: 'r. dos tamoios')
+    Subsidiary.create!(name: 'Concessionária EU', cnpj: '83.604.381/0001-45', address: 'r. dos araguaias')
 
     # Act
     visit root_path
@@ -13,14 +13,14 @@ feature 'Admin view subsidiaries' do
   
     # Assert
     expect(page).to have_content('Concessionária EU')
-    expect(page).to have_content('654321')
+    expect(page).to have_content('83.604.381/0001-45')
     expect(page).to have_content('r. dos araguaias')
     expect(page).to have_link('Voltar')
   end
 
   scenario 'and return to home page' do
-    Subsidiary.create!(name: 'Concessionária BR', cnpj: '123456', address: 'r. dos tamoios')
-    Subsidiary.create!(name: 'Concessionária EU', cnpj: '654321', address: 'r. dos araguaias')
+    Subsidiary.create!(name: 'Concessionária BR', cnpj: '97.799.796/0001-26', address: 'r. dos tamoios')
+    Subsidiary.create!(name: 'Concessionária EU', cnpj: '83.604.381/0001-45', address: 'r. dos araguaias')
 
     visit root_path
     click_on 'Filiais'

@@ -1,5 +1,12 @@
 <h1>Nova Filial</h1>
 
+<% if @subsidiary.errors.any? %>
+    <p>Você deve corrigir os seguintes erros para continuar:</p>
+    <% @subsidiary.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
 <%= form_for @subsidiary do |f| %>
     <%= f.label :name, 'Nome' %>
     <%= f.text_field :name %>
