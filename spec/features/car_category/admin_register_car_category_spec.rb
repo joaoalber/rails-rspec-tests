@@ -18,4 +18,22 @@ feature 'Admin register car category' do
     expect(page).to have_content('100.35')
   end
 
+  scenario 'and must fill in all fields' do
+    visit root_path
+    click_on 'Categorias'
+    click_on 'Registrar nova categoria'
+
+    fill_in 'Nome', with: ''
+    fill_in 'Diária', with: ''
+    fill_in 'Seguro', with: ''
+    fill_in 'Seguro contra terceiros', with: ''
+    click_on 'Enviar'
+
+    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('Diária não pode ficar em branco')
+    expect(page).to have_content('Seguro não pode ficar em branco')
+    expect(page).to have_content('Seguro contra terceiros não pode ficar em branco')
+  end
+
 end

@@ -1,5 +1,12 @@
 <h1>Nova Categoria</h1>
 
+<% if @car_category.errors.any? %>
+    <p>Você deve corrigir os seguintes erros para continuar:</p>
+    <% @car_category.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
 <%= form_for @car_category do |f| %>
     <%= f.label :name, 'Nome' %>
     <%= f.text_field :name %>
