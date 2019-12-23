@@ -30,6 +30,13 @@ class CarCategoriesController < ApplicationController
         redirect_to @car_category
     end
 
+    def destroy
+        @car_category = CarCategory.find(params[:id])
+        @car_category.destroy!
+        flash[:notice] = 'Categoria deletada com sucesso'
+        redirect_to root_path
+    end
+
     private
 
     def car_category_params
