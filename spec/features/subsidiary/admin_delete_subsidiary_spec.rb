@@ -4,6 +4,7 @@ feature 'Admin destroy subsidiary' do
     scenario 'successfully' do
         subs = Subsidiary.create!(name: 'Concessionária BR', cnpj: '75.980.885/0001-31', 
         address: 'r. dos tamoios')
+        expect(Subsidiary.exists?(subs.id)).to eq(true) # antes de deletar
 
         visit root_path
         click_on 'Filiais'
