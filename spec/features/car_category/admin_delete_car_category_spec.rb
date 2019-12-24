@@ -11,7 +11,7 @@ feature 'Admin destroy car category' do
         click_on 'Categoria X'
         click_on 'Deletar'
          
-        expect{ delete :destroy, :id => car }
+        expect{ delete :destroy, id: car.id }
         expect(CarCategory.exists?(car.id)).to eq(false)
         expect(page).to have_content('Categoria deletada com sucesso')
     end

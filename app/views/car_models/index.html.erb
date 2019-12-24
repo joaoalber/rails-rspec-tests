@@ -1,0 +1,5 @@
+ <%= link_to 'Registrar novo modelo', new_car_model_path %>
+
+ <% @car_models.each do |car_model| %>
+    <%= link_to car_model.name, car_model %>
+<% end %>
