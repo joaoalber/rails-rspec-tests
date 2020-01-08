@@ -1,13 +1,3 @@
 <h1>Editar Categoria</h1>
 
-<%= form_with model: @car_category, local: true do |f| %>
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %>
-    <%= f.label :daily_rate, 'Diária' %>
-    <%= f.text_field :daily_rate %>
-    <%= f.label :car_insurance, 'Seguro' %>
-    <%= f.text_field :car_insurance %>
-    <%= f.label :third_party_insurance, 'Seguro contra terceiros' %>
-    <%= f.text_field :third_party_insurance %>
-    <%= f.submit 'Enviar' %>
-<% end %>
+<%= render partial: 'form', locals: { car_category: @car_category } %>
