@@ -24,6 +24,12 @@ feature 'Admin register car model' do
     expect(page).to have_content('1200')
     expect(page).to have_content('Categoria A')
     expect(page).to have_content('Gasolina')
+  end
 
+  scenario 'and car models doesnt exists' do
+    visit root_path 
+    click_on 'Modelos'
+
+    expect(page).to have_content('Nenhum modelo de carro cadastrado')
   end
 end
