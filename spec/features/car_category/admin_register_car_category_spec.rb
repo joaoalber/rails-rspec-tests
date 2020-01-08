@@ -36,4 +36,12 @@ feature 'Admin register car category' do
     expect(page).to have_content('Seguro contra terceiros não pode ficar em branco')
   end
 
+  scenario 'and car category doesnt exists' do
+    visit root_path 
+    click_on 'Categorias'
+
+    expect(page).to have_content('Nenhuma categoria de carro cadastrada')
+  end
+
+
 end

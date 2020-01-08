@@ -38,4 +38,11 @@ feature 'Admin register manufacturer' do
     expect(page).to have_content('Nome já existente')
   end
 
+  scenario 'and manufacturer doesnt exists' do
+    visit root_path 
+    click_on 'Fabricantes'
+
+    expect(page).to have_content('Nenhuma fabricante cadastrada')
+  end
+
 end

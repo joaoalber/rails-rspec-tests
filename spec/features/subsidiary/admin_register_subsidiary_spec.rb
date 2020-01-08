@@ -41,7 +41,13 @@ feature 'Admin register subsidiary' do
     click_on 'Enviar'
 
     expect(page).to have_content('CNPJ Inválido')
-    
+  end
+
+  scenario 'and subsidiary doesnt exists' do
+    visit root_path 
+    click_on 'Filiais'
+
+    expect(page).to have_content('Nenhuma filial cadastrada')
   end
 
 end
