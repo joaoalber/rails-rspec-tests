@@ -26,7 +26,20 @@ feature 'Admin register car model' do
     expect(page).to have_content('Gasolina')
   end
 
-  scenario 'and car models doesnt exists' do
+  scenario 'and should fill all fields' do
+    visit new_car_model_path
+
+    click_on 'Enviar'
+
+    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
+    expect(page).to have_content('Ano não pode ficar em branco')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('Fabricante não pode ficar em branco')
+    expect(page).to have_content('Categoria não pode ficar em branco' )
+    expect(page).to have_content('Motorização contra terceiros')
+  end
+
+  scenario 'and if car models doesnt exists' do
     visit root_path 
     click_on 'Modelos'
 
