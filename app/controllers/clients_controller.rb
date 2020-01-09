@@ -9,11 +9,8 @@ class ClientsController < ApplicationController
 
 	def create
 		@client = Client.new(client_params)
-		if @client.save
-			redirect_to @client
-		else
-			render :new
-		end
+		redirect_to @client, notice: 'Cliente cadastrado com sucesso' if @client.save
+		render :new
 	end
 
 	def show 
