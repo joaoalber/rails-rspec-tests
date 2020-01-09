@@ -18,7 +18,7 @@ class CarModelsController < ApplicationController
 
     def create
         @car_model = CarModel.new(car_model_params)
-        return redirect_to @car_model if @car_model.save
+        return redirect_to @car_model, notice: 'Modelo de carro cadastrado com sucesso' if @car_model.save
         load_manufacturers
         load_car_categories
         render :new
