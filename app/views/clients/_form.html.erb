@@ -1,0 +1,16 @@
+<% if @client.errors.any? %>
+    <p>Você deve corrigir os seguintes erros para continuar:</p>
+    <% @client.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
+<%= form_for @client do |f| %>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+		<%= f.label :cpf, 'CPF' %>
+    <%= f.text_field :cpf %>
+		<%= f.label :email, 'Email' %>
+    <%= f.text_field :email %>
+    <%= f.submit 'Enviar' %>
+<% end %>
