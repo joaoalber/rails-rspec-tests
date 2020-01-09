@@ -1,10 +1,11 @@
 class ManufacturersController < ApplicationController
+    before_action :load_manufacturer, only: [:update, :show, :edit]
+
     def index
         @manufacturers = Manufacturer.all
     end
 
     def show
-        @manufacturer = Manufacturer.find(params[:id])
     end
 
     def new
@@ -12,20 +13,15 @@ class ManufacturersController < ApplicationController
     end
 
     def edit
-        @manufacturer = Manufacturer.find(params[:id])
     end
 
     def create
         @manufacturer = Manufacturer.new(manufacturer_params)
-        if @manufacturer.save
-            redirect_to @manufacturer
-        else    
-            render :new
-        end
+        return redirect_to @manufacturer, notice: 'Fabricante cadastrada com sucesso' if @manufacturer.save
+        render :new
     end
 
     def update
-        @manufacturer = Manufacturer.find(params[:id])
         @manufacturer.update(manufacturer_params)
         redirect_to @manufacturer
     end
@@ -34,6 +30,10 @@ class ManufacturersController < ApplicationController
 
     def manufacturer_params
         params.require(:manufacturer).permit(:name)
+    end
+
+    def load_manufacturer
+        @manufacturer = Manufacturer.find(params[:id])
     end
 
 end
