@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register car category' do
   scenario 'successfully' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Categorias'
     click_on 'Registrar nova categoria'
@@ -16,9 +18,12 @@ feature 'Admin register car category' do
     expect(page).to have_content('10.5')
     expect(page).to have_content('200.32')
     expect(page).to have_content('100.35')
+    expect(page).to have_content('Categoria de carro cadastrada com sucesso')
   end
 
   scenario 'and must fill in all fields' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     visit new_car_category_path
 
     click_on 'Enviar'
@@ -31,6 +36,8 @@ feature 'Admin register car category' do
   end
 
   scenario 'and numbers should be greater than 0' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     visit new_car_category_path
 
     fill_in 'Nome', with: 'Teste'
@@ -45,6 +52,8 @@ feature 'Admin register car category' do
   end
 
   scenario 'and car category doesnt exists' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     visit root_path 
     click_on 'Categorias'
 
