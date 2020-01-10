@@ -1,0 +1,21 @@
+<nav class="navbar fixed-top navbar-dark bg-dark">
+  <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">Rental Cars</a>
+      </div>
+      <% if user_signed_in? %>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to 'Categorias de Carros', car_categories_path, :class => "navbar-items" %></li>
+        <li><%= link_to 'Fabricantes', manufacturers_path, :class => "navbar-items" %></li>
+        <li><%= link_to 'Filiais', subsidiaries_path, :class => "navbar-items" %></li>
+        <li><%= link_to 'Clientes', clients_path, :class => "navbar-items" %></li>
+        <li><%= link_to 'Modelos de carro', car_models_path, :class => "navbar-items" %></li
+        <li><%= link_to 'Sair', destroy_user_session_path, method: :delete, :class => "navbar-items"%></li>
+      </ul>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li> <%= icon('fas', 'user', id: 'logar') %> <%= link_to 'Entrar', new_user_session_path, :class => "navbar-items" %></li>
+        </ul>
+      <% end %>
+    </div>
+  </nav>

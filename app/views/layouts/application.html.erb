@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RentalCars</title>
+    <title>Rental Cars</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
+  <%= render '/layouts/header' %>
 
-  <body>
-  <nav class="main-navigation">
-      <% if user_signed_in? %>
-        <div><%= link_to 'Sair', destroy_user_session_path, method: :delete %></div>
-        <div><%= link_to 'Categorias de Carros', car_categories_path %></div>
-      <% else %>
-        <div><%= link_to 'Entrar', new_user_session_path %></div>
-      <% end %>
-      <div><%= link_to 'Fabricantes', manufacturers_path %></div>
-      <div><%= link_to 'Filiais', subsidiaries_path %></div>
-      <div><%= link_to 'Clientes', clients_path %></div>
-      <div><%= link_to 'Modelos de carro', car_models_path %></div>
-  </nav>
-    <div class="space-from-nav"> 
-      <%= notice %>
-      <%= alert %>
-      <%= yield %>
+  
+  <% if current_page?('/')%>
+    <%= render '/layouts/index' %>
+    <%= yield %>
+  <% else %>
+    <div class="container">
+      <body>
+        <% if notice %>
+          <div class="alert alert-success" role="alert"> <%= notice %> </div>
+        <% end %>
+        <% if alert %>
+          <div class="alert alert-warning" role="alert"> <%= alert %> </div>
+        <% end %>
+        <%= yield %>
+      </body>
+    <% end %>
     </div>
-  </body>
+
+
+
 </html>

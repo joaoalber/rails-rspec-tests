@@ -2,7 +2,10 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
-
+#Animate Css
+gem "animate-rails"
+#FontAwesome
+gem 'font-awesome-sass', '~> 5.12.0'
 #Bootstrap
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4.1'
