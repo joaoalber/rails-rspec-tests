@@ -10,21 +10,22 @@
   </head>
 
   <body>
-  <nav>
+  <nav class="main-navigation">
       <% if user_signed_in? %>
-        <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-        <%= link_to 'Categorias de Carros', car_categories_path %>
+        <div><%= link_to 'Sair', destroy_user_session_path, method: :delete %></div>
+        <div><%= link_to 'Categorias de Carros', car_categories_path %></div>
       <% else %>
-        <%= link_to 'Entrar', new_user_session_path %>
+        <div><%= link_to 'Entrar', new_user_session_path %></div>
       <% end %>
-      <%= link_to 'Fabricantes', manufacturers_path %>
-      <%= link_to 'Filiais', subsidiaries_path %>
-      <%= link_to 'Clientes', clients_path %>
-      <%= link_to 'Modelos de carro', car_models_path %>
-    </nav>
-
-    <%= notice %>
-    <%= alert %>
-    <%= yield %>
+      <div><%= link_to 'Fabricantes', manufacturers_path %></div>
+      <div><%= link_to 'Filiais', subsidiaries_path %></div>
+      <div><%= link_to 'Clientes', clients_path %></div>
+      <div><%= link_to 'Modelos de carro', car_models_path %></div>
+  </nav>
+    <div class="space-from-nav"> 
+      <%= notice %>
+      <%= alert %>
+      <%= yield %>
+    </div>
   </body>
 </html>
