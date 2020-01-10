@@ -14,6 +14,7 @@ feature 'Admin register subsidiary' do
     expect(page).to have_content('Joao')
     expect(page).to have_content('1231231231')
     expect(page).to have_content('team@.com')
+    expect(page).to have_content('Cliente cadastrado com sucesso')
 	end
 
 end

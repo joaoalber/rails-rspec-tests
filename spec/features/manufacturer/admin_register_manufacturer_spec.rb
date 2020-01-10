@@ -10,6 +10,7 @@ feature 'Admin register manufacturer' do
     click_on 'Enviar'
 
     expect(page).to have_content('Fiat')
+    expect(page).to have_content('Fabricante de carro cadastrada com sucesso')
   end
 
   scenario 'and must fill in all fields' do

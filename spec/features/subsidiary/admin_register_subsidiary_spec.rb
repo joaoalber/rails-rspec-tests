@@ -14,6 +14,7 @@ feature 'Admin register subsidiary' do
     expect(page).to have_content('General Motors')
     expect(page).to have_content('31.480.978/0001-21')
     expect(page).to have_content('R. das Palmeiras, 818')
+    expect(page).to have_content('Filial cadastrada com sucesso')
   end
 
   scenario 'and the name shouldnt be duplicated' do

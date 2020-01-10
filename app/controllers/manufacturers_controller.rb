@@ -17,7 +17,7 @@ class ManufacturersController < ApplicationController
 
     def create
         @manufacturer = Manufacturer.new(manufacturer_params)
-        return redirect_to @manufacturer, notice: 'Fabricante cadastrada com sucesso' if @manufacturer.save
+        return redirect_to @manufacturer, notice: 'Fabricante de carro cadastrada com sucesso' if @manufacturer.save
         render :new
     end
 

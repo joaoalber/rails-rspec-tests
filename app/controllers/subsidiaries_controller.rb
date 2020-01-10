@@ -17,7 +17,7 @@ class SubsidiariesController < ApplicationController
 
     def create
         @subsidiary = Subsidiary.new(subsidiary_params)
-        return redirect_to @subsidiary, notice: 'Filial cadastrada com sucesso' if @subsidiary.save
+        return redirect_to @subsidiary, notice: "Filial cadastrada com sucesso" if @subsidiary.save
         render :new
     end
 

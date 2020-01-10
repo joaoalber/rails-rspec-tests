@@ -24,6 +24,7 @@ feature 'Admin register car model' do
     expect(page).to have_content('1200')
     expect(page).to have_content('Categoria A')
     expect(page).to have_content('Gasolina')
+    expect(page).to have_content('Modelo de carro cadastrado com sucesso')
   end
 
   scenario 'and should fill all fields' do
