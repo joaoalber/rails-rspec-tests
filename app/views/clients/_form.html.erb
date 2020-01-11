@@ -6,11 +6,20 @@
 <% end %>
 
 <%= form_for @client do |f| %>
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %>
-		<%= f.label :cpf, 'CPF' %>
-    <%= f.text_field :cpf %>
-		<%= f.label :email, 'Email' %>
-    <%= f.text_field :email %>
-    <%= f.submit 'Enviar' %>
+  <div class="form-row align-items-center">
+    <div class="col-md-4 mt-3">
+      <%= f.label :name, 'Nome' %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="col-md-4 mt-3">
+		  <%= f.label :cpf, 'CPF' %>
+      <%= f.text_field :cpf %>
+    </div>
+    <div class="col-md-4 mt-3">
+		  <%= f.label :email, 'Email' %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+  <%= f.submit 'Enviar', class: "btn btn-primary mt-3 float-right"%>
+    
 <% end %>

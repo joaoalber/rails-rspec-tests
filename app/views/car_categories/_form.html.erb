@@ -6,13 +6,23 @@
 <% end %>
 
 <%= form_for @car_category do |f| %>
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %>
-    <%= f.label :daily_rate, 'Diária' %>
-    <%= f.text_field :daily_rate %>
-    <%= f.label :car_insurance, 'Seguro' %>
-    <%= f.text_field :car_insurance %>
-    <%= f.label :third_party_insurance, 'Seguro contra terceiros' %>
-    <%= f.text_field :third_party_insurance %>
-    <%= f.submit 'Enviar' %>
+<div class="form-row align-items-center">
+    <div class="col-md-4 mt-3">
+        <%= f.label :name, 'Nome' %>
+        <%= f.text_field :name %>
+    </div>  
+    <div class="col-md-4 mt-3">
+        <%= f.label :daily_rate, 'Diária' %>
+        <%= f.text_field :daily_rate %>
+    </div>
+    <div class="col-md-4 mt-3">
+        <%= f.label :car_insurance, 'Seguro' %>
+        <%= f.text_field :car_insurance %>
+    </div>
+    <div class="col-md-4 mt-3">
+        <%= f.label :third_party_insurance, 'Seguro contra terceiros' %>
+        <%= f.text_field :third_party_insurance %>
+    </div>
+    </div>
+    <%= f.submit 'Enviar', class: "btn btn-primary mt-3 float-right" %>
 <% end %>
