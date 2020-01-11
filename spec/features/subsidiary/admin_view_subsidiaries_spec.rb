@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'Admin view subsidiaries' do
   scenario 'successfully' do
     # Arrange
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     Subsidiary.create!(name: 'Concessionária BR', cnpj: '97.799.796/0001-26', address: 'r. dos tamoios')
     Subsidiary.create!(name: 'Concessionária EU', cnpj: '83.604.381/0001-45', address: 'r. dos araguaias')
 
@@ -19,6 +21,8 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and return to home page' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     Subsidiary.create!(name: 'Concessionária BR', cnpj: '97.799.796/0001-26', address: 'r. dos tamoios')
     Subsidiary.create!(name: 'Concessionária EU', cnpj: '83.604.381/0001-45', address: 'r. dos araguaias')
 

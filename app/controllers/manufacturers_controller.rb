@@ -1,5 +1,7 @@
 class ManufacturersController < ApplicationController
     before_action :load_manufacturer, only: [:update, :show, :edit]
+    before_action :authenticate_user!
+
 
     def index
         @manufacturers = Manufacturer.all

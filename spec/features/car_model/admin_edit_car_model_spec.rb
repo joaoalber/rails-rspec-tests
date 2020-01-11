@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin edits car model' do
   scenario 'successfully' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     manufacturer = Manufacturer.create!(name: 'Fabricante A')
     Manufacturer.create!(name: 'Fabricante B')
     car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 

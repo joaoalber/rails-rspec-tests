@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register car model' do
   scenario 'successfully' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     CarCategory.create!(name: 'Categoria A', daily_rate: 4.50, car_insurance: 20.30,
     third_party_insurance: 14.30)
     Manufacturer.create!(name: 'Fabricante A')
@@ -28,6 +30,8 @@ feature 'Admin register car model' do
   end
 
   scenario 'and should fill all fields' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     visit new_car_model_path
 
     click_on 'Enviar'
@@ -41,6 +45,8 @@ feature 'Admin register car model' do
   end
 
   scenario 'and if car models doesnt exists' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+    login_as(user, :scope => :user)
     visit root_path 
     click_on 'Modelos'
 
