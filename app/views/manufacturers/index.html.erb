@@ -1,9 +1,12 @@
- <%= link_to 'Registrar novo fabricante', new_manufacturer_path %>
 
 <% if @manufacturers.empty? %>
     <p>Nenhuma fabricante cadastrada</p>
 <% end %>
 
  <% @manufacturers.each do |manufacturer| %>
-    <%= link_to manufacturer.name, manufacturer %>
+    <%= link_to manufacturer.name, manufacturer, class: "card bg-light mb-3" %>
 <% end %>
+
+ <div class="register-model">
+     <%= link_to 'Registrar novo fabricante', new_manufacturer_path, class: 'btn btn-primary' %>
+</div>

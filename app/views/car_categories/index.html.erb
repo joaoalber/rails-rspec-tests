@@ -1,9 +1,11 @@
- <%= link_to 'Registrar nova categoria', new_car_category_path %>
-
 <% if @car_categories.empty? %>
     <p>Nenhuma categoria de carro cadastrada</p>
 <% end %>
 
  <% @car_categories.each do |car_category| %>
-    <%= link_to car_category.name, car_category %>
+    <%= link_to car_category.name, car_category, class: "card bg-light mb-3" %>
 <% end %>
+
+<div class="register-model">
+    <%= link_to 'Registrar nova categoria', new_car_category_path, class: 'btn btn-primary' %>
+</div>

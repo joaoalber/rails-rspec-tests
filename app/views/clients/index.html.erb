@@ -1,5 +1,7 @@
- <%= link_to 'Registrar novo cliente', new_client_path %>
-
 <% @clients.each do |client| %>
-    <%= link_to client.name, client %>
+    <%= link_to client.name, client, class: "card bg-light mb-3" %>
 <% end %>
+
+ <div class="register-model">
+     <%= link_to 'Registrar novo cliente', new_client_path, class: 'btn btn-primary' %>
+</div>
