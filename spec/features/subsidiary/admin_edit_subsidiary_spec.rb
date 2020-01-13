@@ -9,7 +9,7 @@ feature 'Admin edits subsidiary' do
     visit root_path
     click_on 'Filiais'
     click_on 'Concessionária BR'
-    click_on 'Editar'
+    find(".btn.btn-warning").click
     fill_in 'Nome', with: 'Concessionária PR'
     fill_in 'CNPJ', with: '97.799.796/0001-26'
     fill_in 'Endereço', with: 'r. dos testes'

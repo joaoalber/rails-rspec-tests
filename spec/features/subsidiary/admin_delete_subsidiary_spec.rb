@@ -11,7 +11,7 @@ feature 'Admin destroy subsidiary' do
         visit root_path
         click_on 'Filiais'
         click_on 'Concessionária BR'
-        click_on 'Deletar'
+        find(".btn.btn-danger").click
 
         expect{ delete :destroy, id: subs.id }
         expect(Subsidiary.exists?(subs.id)).to eq(false)

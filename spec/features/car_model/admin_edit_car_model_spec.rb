@@ -16,7 +16,7 @@ feature 'Admin edits car model' do
     visit root_path
     click_on 'Modelos'
     click_on 'Modelo A'
-    click_on 'Editar'
+    find(".btn.btn-warning").click
     fill_in 'Nome', with: 'Modelo B'
     fill_in 'Ano', with: '1994'
     select 'Fabricante B', from: 'Fabricante'

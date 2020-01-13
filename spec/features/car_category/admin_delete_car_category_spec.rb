@@ -11,7 +11,7 @@ feature 'Admin destroy car category' do
         visit root_path
         click_on 'Categorias'
         click_on 'Categoria X'
-        click_on 'Deletar'
+        find(".btn.btn-danger").click
          
         expect{ delete :destroy, id: car.id }
         expect(CarCategory.exists?(car.id)).to eq(false)

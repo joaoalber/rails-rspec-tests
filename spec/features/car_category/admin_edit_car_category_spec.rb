@@ -10,7 +10,7 @@ feature 'Admin edits car category' do
     visit root_path
     click_on 'Categorias'
     click_on 'Categoria X'
-    click_on 'Editar'
+    find(".btn.btn-warning").click
     fill_in 'Nome', with: 'Categoria Y'
     fill_in 'Diária', with: '1050.56'
     fill_in 'Seguro', with: '1023.32'

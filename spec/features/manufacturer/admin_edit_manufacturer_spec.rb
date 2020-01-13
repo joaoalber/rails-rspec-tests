@@ -8,7 +8,7 @@ feature 'Admin edits manufacturer' do
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
-    click_on 'Editar'
+    find(".btn.btn-warning").click
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
 
