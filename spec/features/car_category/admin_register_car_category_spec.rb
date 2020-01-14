@@ -3,11 +3,12 @@ require 'rails_helper'
 feature 'Admin register car category' do
   scenario 'successfully' do
     user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
+    
+    login_as(user, scope: :user)
     visit root_path
+    
     click_on 'Categorias'
     click_on 'Registrar nova categoria'
-
     fill_in 'Nome', with: 'Categoria A'
     fill_in 'Diária', with: '10.5'
     fill_in 'Seguro', with: '200.32'
@@ -23,7 +24,8 @@ feature 'Admin register car category' do
 
   scenario 'and must fill in all fields' do
     user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
+    
+    login_as(user, scope: :user)
     visit new_car_category_path
 
     click_on 'Enviar'
@@ -37,7 +39,8 @@ feature 'Admin register car category' do
 
   scenario 'and numbers should be greater than 0' do
     user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
+    
+    login_as(user, scope: :user)
     visit new_car_category_path
 
     fill_in 'Nome', with: 'Teste'
@@ -53,12 +56,21 @@ feature 'Admin register car category' do
 
   scenario 'and car category doesnt exists' do
     user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
+
+    login_as(user, scope: :user)
     visit root_path 
+
     click_on 'Categorias'
 
     expect(page).to have_content('Nenhuma categoria de carro cadastrada')
   end
+
+  scenario 'and must be authenticated' do
+    visit new_car_category_path
+    
+    expect(current_path).to eq(new_user_session_path)
+  end
+
 
 
 end

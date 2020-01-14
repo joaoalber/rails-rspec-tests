@@ -1,7 +1,7 @@
 class CarModelsController < ApplicationController
+    before_action :authenticate_user!
     before_action :load_car_categories, :load_manufacturers, only: [:new, :edit]
     before_action :load_car_model, only: [:update, :show, :edit]
-    before_action :authenticate_user!
 
     def show
     end

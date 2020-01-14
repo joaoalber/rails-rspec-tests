@@ -1,7 +1,6 @@
 class SubsidiariesController < ApplicationController
-    before_action :load_subsidiary, only: [:update, :show, :edit, :destroy]
     before_action :authenticate_user!
-
+    before_action :load_subsidiary, only: [:update, :show, :edit, :destroy]
 
     def index
         @subsidiaries = Subsidiary.all

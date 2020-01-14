@@ -52,4 +52,10 @@ feature 'Admin register car model' do
 
     expect(page).to have_content('Nenhum modelo de carro cadastrado')
   end
+
+  scenario 'and must be authenticated' do
+    visit new_car_model_path
+    
+    expect(current_path).to eq(new_user_session_path)
+  end
 end

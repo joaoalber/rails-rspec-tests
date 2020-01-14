@@ -13,7 +13,6 @@ feature 'Admin destroy subsidiary' do
         click_on 'Concessionária BR'
         find(".btn.btn-danger").click
 
-        expect{ delete :destroy, id: subs.id }
         expect(Subsidiary.exists?(subs.id)).to eq(false)
         expect(page).to have_content('Filial deletada com sucesso')
     end

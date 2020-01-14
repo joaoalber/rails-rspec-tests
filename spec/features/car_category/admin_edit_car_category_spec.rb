@@ -3,10 +3,10 @@ require 'rails_helper'
 feature 'Admin edits car category' do
   scenario 'successfully' do
     user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
     CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
     third_party_insurance: '100.65')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias'
     click_on 'Categoria X'
@@ -22,4 +22,11 @@ feature 'Admin edits car category' do
     expect(page).to have_content('1023.32')
     expect(page).to have_content('100')
   end
+
+  scenario 'and must be authenticated' do
+    visit edit_car_category_path('whatever')
+    
+    expect(current_path).to eq(new_user_session_path)
+  end
+
 end

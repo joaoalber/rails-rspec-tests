@@ -2,18 +2,15 @@ require 'rails_helper'
 
 feature 'Visitor view car categories' do
   scenario 'successfully' do
-    # Arrange
     user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
     CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-    third_party_insurance: '100.65')
+                        third_party_insurance: '100.65')
 
-    # Act
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias'
     click_on 'Categoria X'
   
-    # Assert
     expect(page).to have_content('Categoria X')
     expect(page).to have_content('10.44')
     expect(page).to have_content('30.24')
@@ -23,10 +20,10 @@ feature 'Visitor view car categories' do
 
   scenario 'and return to home page' do
     user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
     CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
     third_party_insurance: '100.65')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias'
     click_on 'Categoria X'
@@ -40,5 +37,18 @@ feature 'Visitor view car categories' do
 
     expect(current_path).to eq(new_user_session_path)
   end
+
+  scenario 'and must be authenticated to see the button' do
+    visit root_path
+
+    expect(page).to_not have_link('Categorias')
+  end
+
+  scenario 'and must be authenticated to view details' do
+    visit car_category_path('whatever')
+
+    expect(current_path).to eq(new_user_session_path)
+  end
+
 
 end

@@ -3,7 +3,8 @@ require 'rails_helper'
 feature 'Admin register subsidiary' do
   scenario 'successfully' do
     user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
+    
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Clientes'
     click_on 'Registrar novo cliente'
@@ -17,6 +18,12 @@ feature 'Admin register subsidiary' do
     expect(page).to have_content('1231231231')
     expect(page).to have_content('team@.com')
     expect(page).to have_content('Cliente cadastrado com sucesso')
-	end
+  end
+  
+  scenario 'and must be authenticated' do
+    visit new_client_path
+    
+    expect(current_path).to eq(new_user_session_path)
+  end
 
 end

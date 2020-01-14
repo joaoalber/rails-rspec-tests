@@ -22,14 +22,15 @@ feature 'User login' do
 
 	scenario 'and logout' do
     User.create!(email: 'teste@teste.com', password: '123456')
+    
     visit new_user_session_path
-
     within 'form' do
       fill_in 'Email', with: 'teste@teste.com'
       fill_in 'Senha', with: '123456'
 
       click_on 'Entrar'
     end
+    
     click_on 'Sair'
 
 		expect(page).to have_content 'Signed out successfully.'
