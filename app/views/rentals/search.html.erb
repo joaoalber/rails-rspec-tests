@@ -1,5 +1,25 @@
-<%= @rentals.first.code %>
-<%= @rentals.first.start_date %>
-<%= @rentals.first.end_date %>
-<%= @client.name %>
-<%= @car_category.name %>
+<p>Foram encontrado(s) <%= @rentals.count %> resultado(s) para a 
+pesquisa '<%= @search %>'</p> 
+
+<% @rentals.each do |rental| %>
+	<div>
+		<h1>Código</h1>
+		<%= rental.code %>
+	</div>
+	<div>
+		<h1>Data inicial</h1>
+		<%= rental.start_date %>
+	</div>
+	<div>
+		<h1>Data final</h1>
+		<%= rental.end_date %>
+	</div>
+	<div>
+		<h1>Categoria</h1>
+		<%= rental.car_category.name %>
+	</div>
+	<div>
+		<h1>Cliente</h1>
+		<%= rental.client.name %>
+	</div>
+<% end %>
