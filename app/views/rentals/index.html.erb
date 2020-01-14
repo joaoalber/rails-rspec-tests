@@ -1,0 +1,18 @@
+<% if @rentals.empty? %>
+  <p>Nenhum modelo de carro cadastrado</p>
+<% else %>
+  <%= form_tag '/search', method: :get do %>
+  <%= label_tag :q, 'Pesquisar' %>
+  <%= text_field_tag :q %>
+  <%= submit_tag 'Buscar' %>
+<% end %>
+
+<% end %>
+
+ <% @rentals.each do |rental| %>
+    <%= link_to rental.code, rental, class: "card bg-light mb-3" %>
+<% end %>
+
+ <div class="register-model">
+    <%= link_to 'Registrar nova locação', new_rental_path, class: 'btn btn-primary' %>
+</div>
