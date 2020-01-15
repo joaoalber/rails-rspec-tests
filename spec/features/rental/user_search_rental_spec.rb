@@ -64,6 +64,9 @@ feature 'Search rental' do
     click_on 'Buscar'
 
     expect(page).to have_content("Foram encontrado(s) 0 resultado(s) para a pesquisa 'x234'")
+
+    click_on 'Voltar'
+    expect(current_path).to eq rentals_path
   end
 
 end
