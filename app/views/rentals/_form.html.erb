@@ -1,0 +1,28 @@
+<% if @rental.errors.any? %>
+    <p>Você deve corrigir os seguintes erros para continuar:</p>
+    <% @rental.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
+<%= form_with model: @rental, locals: true do |f| %>
+    <div class="form-row align-items-center">
+        <div class="col-md-4 mt-3">
+            <%= f.label :start_date, 'Data inicial' %>
+    				<%= f.date_field :start_date %>
+        </div>
+        <div class="col-md-4 mt-3">
+           <%= f.label :end_date, 'Data final' %>
+    				<%= f.date_field :end_date %>
+        </div>
+        <div class="col-md-4 mt-3">
+            <%= f.label :car_category_id, 'Categoria' %>
+    				<%= f.collection_select(:car_category_id, @car_categories, :id, :name) %>
+        </div>
+        <div class="col-md-4 mt-3">
+            <%= f.label :client_id, 'Cliente' %>
+    				<%= f.collection_select(:client_id, @clients, :id, :identification) %>
+        </div>
+    </div>
+    <%= f.submit 'Agendar', class: "btn btn-primary mt-3 float-right" %>
+<% end %>

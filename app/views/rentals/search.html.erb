@@ -3,23 +3,10 @@ pesquisa '<%= @search %>'</p>
 
 <% @rentals.each do |rental| %>
 	<div>
-		<h1>Código</h1>
-		<%= rental.code %>
+		<p>Código: <%= rental.code %></p>
 	</div>
 	<div>
-		<h1>Data inicial</h1>
-		<%= rental.start_date %>
-	</div>
-	<div>
-		<h1>Data final</h1>
-		<%= rental.end_date %>
-	</div>
-	<div>
-		<h1>Categoria</h1>
-		<%= rental.car_category.name %>
-	</div>
-	<div>
-		<h1>Cliente</h1>
-		<%= rental.client.name %>
+		<p>Nome do cliente: <%= rental.client.name %></p>
+		<p>Email: <%= rental.client.email %></p>
 	</div>
 <% end %>

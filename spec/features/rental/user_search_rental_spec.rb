@@ -6,11 +6,11 @@ feature 'Search rental' do
     car_category = CarCategory.create!(name: 'C', daily_rate: 12, car_insurance: 13, third_party_insurance: 14)
     client = Client.create!(name: 'joao', email: 'teste@teste.com', cpf: '123456-2')
     Rental.create!(code: 'x234', start_date: Date.current, end_date: 1.day.from_now, 
-                  client: client, car_category: car_category)
+                  client: client, car_category: car_category, user: user)
     Rental.create!(code: 'x235', start_date: Date.current, end_date: 1.day.from_now, 
-                  client: client, car_category: car_category)
+                  client: client, car_category: car_category, user: user)
     Rental.create!(code: 'f092', start_date: Date.current, end_date: 1.day.from_now, 
-									client: client, car_category: car_category)
+									client: client, car_category: car_category, user: user)
 									
 		login_as(user, scope: :user)
     visit root_path
@@ -19,10 +19,8 @@ feature 'Search rental' do
     click_on 'Buscar'
 
     expect(page).to have_content('x234')
-    expect(page).to have_content('2020-01-15')
-    expect(page).to have_content('2020-01-14')
     expect(page).to have_content('joao')
-    expect(page).to have_content('C')
+    expect(page).to have_content('teste@teste.com')
     
     expect(page).to_not have_content('x235')
     expect(page).to_not have_content('f092')
@@ -33,11 +31,11 @@ feature 'Search rental' do
     car_category = CarCategory.create!(name: 'C', daily_rate: 12, car_insurance: 13, third_party_insurance: 14)
     client = Client.create!(name: 'joao', email: 'teste@teste.com', cpf: '123456-2')
     Rental.create!(code: 'x234', start_date: Date.current, end_date: 1.day.from_now, 
-                  client: client, car_category: car_category)
+                  client: client, car_category: car_category, user: user)
     Rental.create!(code: 'x235', start_date: Date.current, end_date: 1.day.from_now, 
-                  client: client, car_category: car_category)
+                  client: client, car_category: car_category, user: user)
     Rental.create!(code: 'f092', start_date: Date.current, end_date: 1.day.from_now, 
-									client: client, car_category: car_category)
+									client: client, car_category: car_category, user: user)
 									
 		login_as(user, scope: :user)
     visit root_path
@@ -46,16 +44,12 @@ feature 'Search rental' do
     click_on 'Buscar'
 
     expect(page).to have_content('x234')
-    expect(page).to have_content('2020-01-15')
-    expect(page).to have_content('2020-01-14')
+    expect(page).to have_content('teste@teste.com')
     expect(page).to have_content('joao')
-    expect(page).to have_content('C')
 
     expect(page).to have_content('x235')
-    expect(page).to have_content('2020-01-15')
-    expect(page).to have_content('2020-01-14')
     expect(page).to have_content('joao')
-    expect(page).to have_content('C')
+    expect(page).to have_content('teste@teste.com')
 
     expect(page).to_not have_content('f092')
   end
@@ -66,7 +60,6 @@ feature 'Search rental' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Locações'
-    puts current_path
     fill_in 'Pesquisar', with: 'x234'
     click_on 'Buscar'
 
