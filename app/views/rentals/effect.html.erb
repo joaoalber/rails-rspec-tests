@@ -1,0 +1,6 @@
+<%= form_for @car_rental, url: car_rentals_path do |f| %>
+		<%= f.hidden_field :rental_id, :value => @rental.id %>
+    <%= f.label :car_id, 'Carro' %>
+    <%= f.collection_select(:car_id, @cars, :id, :identification) %>
+  	<%= f.submit 'Efetivar' %>
+<% end %>

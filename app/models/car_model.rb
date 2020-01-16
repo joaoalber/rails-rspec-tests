@@ -1,6 +1,7 @@
 class CarModel < ApplicationRecord
   belongs_to :manufacturer
   belongs_to :car_category
+  has_many :cars
 
   validates :name, presence: { message: 'Nome não pode ficar em branco' }
   validates :year, presence: { message: 'Ano não pode ficar em branco' }
@@ -9,5 +10,9 @@ class CarModel < ApplicationRecord
                                       não pode ficar em branco' }
   validates :car_category_id, presence: { message: 'Categoria não pode ficar em branco' }
   validates :fuel_type, presence: { message: 'Combustivel não pode ficar em branco' }
+  
+  def identification
+    "#{name} - #{car.license_plate} - #{car.color}"
+  end
 
 end

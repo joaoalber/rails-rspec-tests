@@ -9,5 +9,10 @@ class CarCategory < ApplicationRecord
   validates :third_party_insurance, numericality: { greater_than: 0, message: 'Seguro contra terceiros deve ser superior a 0' }
 
   has_many :car_models
+  has_many :cars, through: :car_models  
+
+  def rental_price
+    car_insurance + daily_rate + third_party_insurance
+  end
 
 end

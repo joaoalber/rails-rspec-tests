@@ -28,6 +28,12 @@ class RentalsController < ApplicationController
 		 @rentals = Rental.where('code LIKE ?', "%#{@search.upcase}%")
 	end
 
+	def effect
+		@rental = Rental.find(params[:id])
+		@car_rental = CarRental.new
+		@cars = @rental.car_category.cars
+	end
+
 	private
 
 	def rental_params

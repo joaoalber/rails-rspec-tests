@@ -3,7 +3,7 @@ pesquisa '<%= @search %>'</p>
 
 <% @rentals.each do |rental| %>
 	<div>
-		<p>Código: <%= rental.code %></p>
+		<p>Código: <%= link_to rental.code, rental_path(rental) %></p>
 	</div>
 	<div>
 		<p>Nome do cliente: <%= rental.client.name %></p>
