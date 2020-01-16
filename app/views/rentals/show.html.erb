@@ -16,4 +16,5 @@
 	<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
 </div>
 
-<%= link_to 'Efetivar locação', effect_rental_path(@rental), class: 'btn btn-primary' %>
+<%= link_to 'Efetivar locação', effect_rental_path(@rental), class: 'btn btn-primary' if @rental.car_rentals.empty? %>
+	
