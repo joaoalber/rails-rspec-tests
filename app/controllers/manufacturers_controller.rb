@@ -26,6 +26,12 @@ class ManufacturersController < ApplicationController
         @manufacturer.update(manufacturer_params)
         redirect_to @manufacturer
     end
+    
+    def destroy
+        @manufacturer = Manufacturer.find(params[:id])
+        return redirect_to manufacturers_path, notice: 'Fabricante deletada com sucesso' if @manufacturer.destroy
+        render :index
+    end
 
     private
 
