@@ -2,6 +2,9 @@
 <%= @client.cpf %>
 <%= @client.email %>
 
+<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_client_path(@client), class: 'btn btn-warning' %>
+<hr>
+
 <div class="aligned-buttons">
 	<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
 </div>
