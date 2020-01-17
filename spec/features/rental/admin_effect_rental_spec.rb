@@ -13,7 +13,7 @@ feature 'Admin effect rental' do
                   client: client, car_category: car_category, user: user)
     car_model = CarModel.create!(name: 'Uno', year: 2009, motorization: 1.0, fuel_type: 'gasosa',
                                 car_category: car_category, manufacturer: manufacturer)
-    car = Car.create!(car_model: car_model, license_plate: 'CIC-3301', subsidiary: subsidiary,
+    car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary,
                      mileage: 100, color: 'Vermelho', status: '0') 
     
 
