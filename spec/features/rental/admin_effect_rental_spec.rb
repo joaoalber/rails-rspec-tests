@@ -14,7 +14,7 @@ feature 'Admin effect rental' do
     car_model = CarModel.create!(name: 'Uno', year: 2009, motorization: 1.0, fuel_type: 'gasosa',
                                 car_category: car_category, manufacturer: manufacturer)
     car = Car.create!(car_model: car_model, license_plate: 'CIC-3301', subsidiary: subsidiary,
-                     mileage: '100km', color: 'Vermelho') 
+                     mileage: 100, color: 'Vermelho', status: '0') 
     
 
     login_as(user, scope: :user)

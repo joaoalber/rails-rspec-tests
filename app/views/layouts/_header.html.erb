@@ -5,6 +5,7 @@
       </div>
       <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to 'Carros', cars_path, :class => "navbar-items"%></li>
         <li><%= link_to 'Categorias de Carros', car_categories_path, :class => "navbar-items" %></li>
         <li><%= link_to 'Fabricantes', manufacturers_path, :class => "navbar-items" %></li>
         <li><%= link_to 'Filiais', subsidiaries_path, :class => "navbar-items" %></li>

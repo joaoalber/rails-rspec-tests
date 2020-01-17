@@ -1,0 +1,36 @@
+<% if @car.errors.any? %>
+    <p>Você deve corrigir os seguintes erros para continuar:</p>
+    <% @car.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+    <% end %>
+<% end %>
+
+<%= form_for @car do |f| %>
+    <div class="form-row align-items-center">
+        <div class="col-md-4 mt-3">
+            <%= f.label :license_plate, 'Placa' %>
+            <%= f.text_field :license_plate %>
+        </div>
+        <div class="col-md-4 mt-3">
+            <%= f.label :color, 'Cor' %>
+            <%= f.text_field :color %>
+        </div>
+        <div class="col-md-4 mt-3">
+            <%= f.label :mileage, 'Quilometragem' %>
+            <%= f.text_field :mileage %>
+        </div>
+        <div class="col-md-4 mt-3">
+            <%= f.label :car_model_id, 'Modelo' %>
+            <%= f.collection_select :car_model_id, @car_models, :id, :name %>
+        </div>
+        <div class="col-md-4 mt-3">
+            <%= f.label :subsidiary_id, 'Filial' %>
+            <%= f.collection_select :subsidiary_id, @subsidiaries, :id, :name  %>
+        </div>
+        <div class="col-md-4 mt-3">
+            <%= f.label :status, 'Status' %>
+            <%= f.text_field :status %>
+        </div>
+    </div>
+    <%= f.submit 'Enviar', class: "btn btn-primary mt-3 float-right" %>
+<% end %>
