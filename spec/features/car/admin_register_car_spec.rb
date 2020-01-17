@@ -32,4 +32,20 @@ feature 'Admin register car' do
 
 	end
 
+	scenario 'and must be valid' do
+		user = User.create!(email: "teste@teste.com", password: "123456")
+	
+		login_as(user, :scope => :user)
+		visit new_car_path
+
+		click_on 'Enviar'
+
+		expect(page).to have_content('Placa não pode ficar em branco')
+		expect(page).to have_content('Cor não pode ficar em branco')
+		expect(page).to have_content('Modelo não pode ficar em branco')
+		expect(page).to have_content('Quilometragem não pode ficar em branco')
+		expect(page).to have_content('Filial não pode ficar em branco')
+		expect(page).to have_content('Status não pode ficar em branco')
+	end
+
 end
