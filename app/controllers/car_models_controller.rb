@@ -1,12 +1,12 @@
 class CarModelsController < ApplicationController
     before_action :authenticate_user!
     before_action :load_car_categories, :load_manufacturers, only: [:new, :edit]
-    before_action :load_car_model, only: [:update, :show, :edit]
+    before_action :load_car_model, only: [:update, :show, :edit, :destroy]
 
     def show
     end
 
-    def edit
+    def edit    
     end
 
     def index
@@ -28,6 +28,11 @@ class CarModelsController < ApplicationController
     def update
         @car_model.update(car_model_params)
         redirect_to @car_model
+    end
+
+    def destroy
+       return redirect_to car_models_path, notice: 'Modelo deletado com sucesso' if @car_model.destroy
+       render :index 
     end
 
     private

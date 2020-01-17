@@ -6,6 +6,7 @@
 <%= @car_model.fuel_type %>
 
 <%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_car_model_path(@car_model), class: 'btn btn-warning' %>
+<%= link_to icon('fas', 'trash-alt', id: 'delete'), @car_model, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
 <hr>
 <div class="aligned-buttons">
 	<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
