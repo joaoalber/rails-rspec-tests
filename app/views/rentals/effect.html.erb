@@ -1,6 +1,8 @@
-<%= form_for @car_rental, url: car_rentals_path do |f| %>
-		<%= f.hidden_field :rental_id, :value => @rental.id %>
-    <%= f.label :car_id, 'Carro' %>
-    <%= f.collection_select(:car_id, @cars, :id, :identification) %>
-  	<%= f.submit 'Efetivar' %>
+<h1>Carros disponíveis</h1>
+
+<% @cars.each do |car| %>
+	<div class="cars">
+		<%= car.identification %>
+		<%= link_to 'Efetivar locação', ready_rental_path(car_id: car, rental_id: @rental), method: :post %>
+	</div>
 <% end %>

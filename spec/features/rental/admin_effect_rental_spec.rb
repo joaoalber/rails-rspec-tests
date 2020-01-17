@@ -23,8 +23,8 @@ feature 'Admin effect rental' do
     click_on 'Buscar'
     click_on 'f092'
     click_on 'Efetivar locação'
-    select 'Uno - CIC-3301 - Vermelho', from: 'Carro'
-    click_on 'Efetivar'
+
+    click_on 'Efetivar locação'
 
     expect(page).to have_content('Locação efetivada com sucesso')
   end
