@@ -26,8 +26,7 @@ class CarModelsController < ApplicationController
     end
 
     def update
-        @car_model.update(car_model_params)
-        redirect_to @car_model
+        return redirect_to @car_model, notice: 'Modelo atualizado com sucesso' if @car_model.update(car_model_params)
     end
 
     def destroy

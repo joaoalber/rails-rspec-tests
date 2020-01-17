@@ -23,8 +23,7 @@ class ManufacturersController < ApplicationController
     end
 
     def update
-        @manufacturer.update(manufacturer_params)
-        redirect_to @manufacturer
+        return redirect_to @manufacturer, notice: 'Fabricante atualizada com sucesso' if @manufacturer.update(manufacturer_params)
     end
     
     def destroy

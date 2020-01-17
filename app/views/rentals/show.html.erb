@@ -1,16 +1,14 @@
 <%= @rental.code %>
-<%= @rental.start_date %>
-<%= @rental.end_date %>
+<%= @rental.start_date.strftime("%d/%m/%Y") %>
+<%= @rental.end_date.strftime("%d/%m/%Y") %>
 <%= @rental.user.email %>
 <%= @rental.car_category.name %>
-<%= @rental.client.name %>
+<%= "#{@rental.client.cpf} - #{@rental.client.name}" %>
 <%= @rental.client.email %>
-<%= @rental.client.cpf %>
 
-<%# 
 <%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_rental_path(@rental), class: 'btn btn-warning' %>
 <%# <%= link_to link_to icon('fas', 'trash', id: 'delete'), @rental, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger' %>
-<%# <hr> %>
+<hr>
 
 <div class="aligned-buttons">
 	<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>

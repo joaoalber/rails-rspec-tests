@@ -23,8 +23,8 @@ class CarCategoriesController < ApplicationController
     end
 
     def update
-        @car_category.update(car_category_params)
-        redirect_to @car_category
+        return redirect_to @car_category, notice: 'Categoria atualizada com sucesso' if @car_category.update(car_category_params)
+        
     end
 
     def destroy

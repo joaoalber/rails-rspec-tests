@@ -12,16 +12,16 @@ feature 'User register rental' do
     click_on 'Locações'
     click_on 'Agendar nova locação'
 
-    fill_in 'Data inicial', with: '2040-01-12'
-    fill_in 'Data final', with: '2040-01-13'
+    fill_in 'Data inicial', with: '12/01/2040'
+    fill_in 'Data final', with: '13/01/2040'
     select "123456-2 - joao", from: 'Cliente'
     select 'C', from: 'Categoria'
     click_on 'Agendar'
      
     expect(page).to have_content('Locação agendada com sucesso')
     expect(page).to have_content('teste@teste.com')
-    expect(page).to have_content('2040-01-13')
-    expect(page).to have_content('2040-01-12')
+    expect(page).to have_content('13/01/2040')
+    expect(page).to have_content('12/01/2040')
     expect(page).to have_content('teste@teste.com')
     expect(page).to have_content('123456-2')
 		expect(page).to have_content(/C/)

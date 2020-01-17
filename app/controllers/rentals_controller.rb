@@ -1,4 +1,6 @@
 class RentalsController < ApplicationController
+	before_action :authenticate_user!
+	
 	def index
 		@rentals = Rental.all
 	end
@@ -21,6 +23,17 @@ class RentalsController < ApplicationController
 		@car_categories = CarCategory.all
 		@clients = Client.all
 		render :new
+	end
+
+	def edit
+		@rental = Rental.find(params[:id])
+		@car_categories = CarCategory.all
+		@clients = Client.all
+	end
+
+	def update
+		@rental = Rental.find(params[:id])
+		return redirect_to @rental, notice: 'Locação atualizada com sucesso' if @rental.update(rental_params)
 	end
 
 	def search

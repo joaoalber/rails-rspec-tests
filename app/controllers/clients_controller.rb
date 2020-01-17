@@ -25,7 +25,7 @@ class ClientsController < ApplicationController
 
 	def update
 		@client = Client.find(params[:id])
-		return redirect_to @client if @client.update(client_params)
+		return redirect_to @client, notice: 'Cliente atualizado com sucesso' if @client.update(client_params)
 	end
 
 	def destroy
