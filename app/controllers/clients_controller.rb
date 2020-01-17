@@ -28,6 +28,12 @@ class ClientsController < ApplicationController
 		return redirect_to @client if @client.update(client_params)
 	end
 
+	def destroy
+		@client = Client.find(params[:id])
+		return redirect_to clients_path,  notice: 'Cliente deletado com sucesso' if @client.destroy
+		render :index 
+	end
+
 	private
 
 	def client_params

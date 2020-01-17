@@ -3,6 +3,7 @@
 <%= @client.email %>
 
 <%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_client_path(@client), class: 'btn btn-warning' %>
+<%= link_to icon('fas', 'trash-alt', id: 'delete'), @client,  method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
 <hr>
 
 <div class="aligned-buttons">

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin edits client' do
+feature 'Admin edit client' do
 	scenario 'sucessfully' do
 		user = User.create!(email: "teste@teste.com", password: "123456")
 		Client.create!(name: 'Joao', email: 'joao@email.com', cpf: '123.563.212-58')
