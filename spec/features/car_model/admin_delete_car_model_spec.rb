@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin destroy car category' do
+feature 'Admin destroy car model' do
     scenario 'successfully' do
         user = User.create!(email: "teste@teste.com", password: "123456")
         car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
