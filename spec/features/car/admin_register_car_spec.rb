@@ -66,10 +66,10 @@ feature 'Admin register car' do
     																	third_party_insurance: '100.65')
 		manufacturer = Manufacturer.create!(name: 'Fabricante A')
 		car_model = CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-										car_category: car_category, fuel_type: 'Gasolina')
+																 car_category: car_category, fuel_type: 'Gasolina')
 		subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
 		car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary,
-											 mileage: 100, color: 'Vermelho', status: '0') 
+											mileage: 100, color: 'Vermelho', status: '0') 
 		
 		login_as(user, :scope => :user)
 		visit new_car_path

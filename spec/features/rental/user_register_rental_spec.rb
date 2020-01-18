@@ -27,5 +27,42 @@ feature 'User register rental' do
 		expect(page).to have_content(/C/)
 		expect(Rental.last.code).to match(/[a-zA-Z0-9]+/)
 
-	end
+  end
+  
+  # scenario 'and final date should be greater than start date' do
+  #     user = User.create!(email: "teste@teste.com", password: "123456")
+
+  #     login_as(user, scope: :user)
+  #     visit new_rental_path
+  #     fill_in 'Data inicial', with: '13/02/2020'
+  #     fill_in 'Data final', with: '11/02/2020'
+  #     click_on 'Agendar'
+
+  #     expect(page).to have_content('Data final deve ser depois da data inicial')
+  # end
+
+  scenario 'and start date should not be in the past' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+
+    login_as(user, scope: :user)
+    visit new_rental_path
+    fill_in 'Data inicial', with: '13/01/2020'
+    fill_in 'Data final', with: '20/01/2020'
+    click_on 'Agendar'
+
+    expect(page).to have_content('Data inicial deve ser depois de hoje')
+  end
+
+  scenario 'and end date should be after start date' do
+    user = User.create!(email: "teste@teste.com", password: "123456")
+
+    login_as(user, scope: :user)
+    visit new_rental_path
+    fill_in 'Data inicial', with: '13/01/2020'
+    fill_in 'Data final', with: '10/01/2020' 
+    click_on 'Agendar'
+
+    expect(page).to have_content('Data final deve ser depois da data inicial')
+  end
+
 end
