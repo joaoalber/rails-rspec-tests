@@ -1,3 +1,8 @@
+<% if @rental.status == 'in_progress' %>
+	<h1>Locação em progresso</h1>
+<% end %>
+
+<%= @rental.status %>
 <%= @rental.code %>
 <%= @rental.start_date.strftime("%d/%m/%Y") %>
 <%= @rental.end_date.strftime("%d/%m/%Y") %>
@@ -14,5 +19,5 @@
 	<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
 </div>
 
-<%= link_to 'Efetivar locação', effect_rental_path(@rental), class: 'btn btn-primary' if @rental.car_rentals.empty? %>
-	
+
+<%= link_to 'Efetivar locação', effect_rental_path(@rental), class: 'btn btn-primary' if @rental.status == 'scheduled' %>

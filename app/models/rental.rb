@@ -1,10 +1,12 @@
 class Rental < ApplicationRecord
-  validate :start_date_cannot_be_in_the_past, :end_date_cannot_be_before_start_date, :available_cars_in_category
-
   belongs_to :client
   belongs_to :car_category
   belongs_to :user
   has_many :car_rentals
+
+  validate :start_date_cannot_be_in_the_past, :end_date_cannot_be_before_start_date, :available_cars_in_category
+  enum status: { scheduled: 0, in_progress: 5 }
+  
 
   def start_date_cannot_be_in_the_past
     if start_date.present? && start_date < Date.today

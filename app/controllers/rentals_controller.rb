@@ -43,6 +43,7 @@ class RentalsController < ApplicationController
 
 	def effect
 		@rental = Rental.find(params[:id])
+		@rental.update(status: 'in_progress')
 		@car_rental = CarRental.new
 		@cars = @rental.car_category.cars
 	end
