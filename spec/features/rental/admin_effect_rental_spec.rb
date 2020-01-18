@@ -9,7 +9,7 @@ feature 'Admin effect rental' do
     car_category = CarCategory.create!(name: 'C', daily_rate: 12, car_insurance: 13,
                                         third_party_insurance: 123)
     client = Client.create!(name: 'joao', email: 'teste@teste.com', cpf: '123456-2')
-    rental = Rental.create!(code: 'f092', start_date: Date.current, end_date: 1.day.from_now, 
+    rental = Rental.create!(code: 'f092', start_date: 10.years.from_now, end_date: 11.years.from_now,
                   client: client, car_category: car_category, user: user)
     car_model = CarModel.create!(name: 'Uno', year: 2009, motorization: 1.0, fuel_type: 'gasosa',
                                 car_category: car_category, manufacturer: manufacturer)

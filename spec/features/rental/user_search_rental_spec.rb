@@ -5,11 +5,11 @@ feature 'Search rental' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
     car_category = CarCategory.create!(name: 'C', daily_rate: 12, car_insurance: 13, third_party_insurance: 14)
     client = Client.create!(name: 'joao', email: 'teste@teste.com', cpf: '123456-2')
-    Rental.create!(code: 'x234', start_date: Date.current, end_date: 1.day.from_now, 
+    Rental.create!(code: 'x234', start_date: 10.years.from_now, end_date: 11.years.from_now, 
                   client: client, car_category: car_category, user: user)
-    Rental.create!(code: 'x235', start_date: Date.current, end_date: 1.day.from_now, 
+    Rental.create!(code: 'x235', start_date: 10.years.from_now, end_date: 11.years.from_now, 
                   client: client, car_category: car_category, user: user)
-    Rental.create!(code: 'f092', start_date: Date.current, end_date: 1.day.from_now, 
+    Rental.create!(code: 'f092', start_date: 10.years.from_now, end_date: 11.years.from_now, 
 									client: client, car_category: car_category, user: user)
 									
 		login_as(user, scope: :user)
@@ -30,11 +30,11 @@ feature 'Search rental' do
     user = User.create!(email: 'teste@teste.com', password: '123456')
     car_category = CarCategory.create!(name: 'C', daily_rate: 12, car_insurance: 13, third_party_insurance: 14)
     client = Client.create!(name: 'joao', email: 'teste@teste.com', cpf: '123456-2')
-    Rental.create!(code: 'x234', start_date: Date.current, end_date: 1.day.from_now, 
+    Rental.create!(code: 'x234', start_date: 10.years.from_now, end_date: 11.years.from_now, 
                   client: client, car_category: car_category, user: user)
-    Rental.create!(code: 'x235', start_date: Date.current, end_date: 1.day.from_now, 
+    Rental.create!(code: 'x235', start_date: 10.years.from_now, end_date: 11.years.from_now, 
                   client: client, car_category: car_category, user: user)
-    Rental.create!(code: 'f092', start_date: Date.current, end_date: 1.day.from_now, 
+    Rental.create!(code: 'f092', start_date: 10.years.from_now, end_date: 11.years.from_now, 
 									client: client, car_category: car_category, user: user)
 									
 		login_as(user, scope: :user)
