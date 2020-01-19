@@ -14,6 +14,7 @@ class Car < ApplicationRecord
   
 
   def identification
+    return "Carro não cadastrado corretamente" if car_model.nil?
     "#{car_model.name} - #{license_plate} - #{color}"
   end
 end

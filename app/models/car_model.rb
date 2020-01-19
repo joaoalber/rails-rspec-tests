@@ -11,8 +11,5 @@ class CarModel < ApplicationRecord
   validates :car_category_id, presence: { message: 'Categoria não pode ficar em branco' }
   validates :fuel_type, presence: { message: 'Combustivel não pode ficar em branco' }
   
-  def identification
-    "#{name} - #{car.license_plate} - #{car.color}"
-  end
 
 end
