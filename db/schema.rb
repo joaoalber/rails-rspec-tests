@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_01_18_204919) do
     t.integer "car_model_id"
     t.integer "mileage"
     t.integer "subsidiary_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_model_id"], name: "index_cars_on_car_model_id"

@@ -1,8 +1,15 @@
-<h1>Carros disponíveis</h1>
+<h1>Carros</h1>
 
 <% @cars.each do |car| %>
-	<div class="cars">
-		<%= car.identification %>
-		<%= link_to 'Efetivar locação', ready_rental_path(car_id: car, rental_id: @rental), method: :post %>
+	
+	<div class="car">
+		<% if car.status == "unavailable"%>	
+			<%= car.identification %>
+			<p>Carro Indisponível</p>
+		<% else %>
+			<%= car.status %>
+			<%= car.identification %>
+			<%= link_to 'Efetivar locação', ready_rental_path(car_id: car, rental_id: @rental), method: :post %>
+		<% end %>
 	</div>
 <% end %>

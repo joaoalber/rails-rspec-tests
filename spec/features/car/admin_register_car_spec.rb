@@ -20,7 +20,6 @@ feature 'Admin register car' do
 		select 'Fox', from: 'Modelo'
 		fill_in 'Quilometragem', with: '15'
 		select 'Av. das Américas', from: 'Filial'
-		fill_in 'Status', with: '0'
 		click_on 'Enviar'
 
 		expect(page).to have_content('CIC3301')
@@ -28,7 +27,6 @@ feature 'Admin register car' do
 		expect(page).to have_content('Fox')
 		expect(page).to have_content('15')
 		expect(page).to have_content('Av. das Américas')
-		expect(page).to have_content('0')
 
 	end
 
@@ -45,7 +43,6 @@ feature 'Admin register car' do
 		expect(page).to have_content('Modelo não pode ficar em branco')
 		expect(page).to have_content('Quilometragem não pode ficar em branco')
 		expect(page).to have_content('Filial não pode ficar em branco')
-		expect(page).to have_content('Status não pode ficar em branco')
 	end
 
 	scenario 'and mileage should be greater than 0' do
@@ -69,7 +66,7 @@ feature 'Admin register car' do
 																 car_category: car_category, fuel_type: 'Gasolina')
 		subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
 		car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary,
-											mileage: 100, color: 'Vermelho', status: '0') 
+											mileage: 100, color: 'Vermelho') 
 		
 		login_as(user, :scope => :user)
 		visit new_car_path

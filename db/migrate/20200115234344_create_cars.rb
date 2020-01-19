@@ -6,7 +6,7 @@ class CreateCars < ActiveRecord::Migration[5.2]
       t.references :car_model, foreign_key: true
       t.integer :mileage
       t.references :subsidiary, foreign_key: true
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
     end

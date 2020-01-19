@@ -27,10 +27,6 @@
             <%= f.label :subsidiary_id, 'Filial' %>
             <%= f.collection_select :subsidiary_id, @subsidiaries, :id, :name  %>
         </div>
-        <div class="col-md-4 mt-3">
-            <%= f.label :status, 'Status' %>
-            <%= f.text_field :status %>
-        </div>
     </div>
     <%= f.submit 'Enviar', class: "btn btn-primary mt-3 float-right" %>
 <% end %>

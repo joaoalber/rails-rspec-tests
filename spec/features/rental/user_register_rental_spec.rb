@@ -60,8 +60,8 @@ feature 'User register rental' do
     subsidiary = Subsidiary.create!(name: 'Filial A', cnpj: '75.980.885/0001-31', address: 'R. dos Coqueiros')
     
     car_model = CarModel.create!(name: 'Uno', year: 2009, motorization: 1.0, fuel_type: 'gasolina', car_category: car_category, manufacturer: manufacturer)
-    car_un = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary, mileage: 100, color: 'Vermelho', status: '1')
-    car_do = Car.create!(car_model: car_model, license_plate: 'CIS2505', subsidiary: subsidiary, mileage: 50, color: 'Azul', status: '1')
+    car_un = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary, mileage: 100, color: 'Vermelho')
+    car_do = Car.create!(car_model: car_model, license_plate: 'CIS2505', subsidiary: subsidiary, mileage: 50, color: 'Azul')
     client = Client.create!(name: 'joao', email: 'teste@teste.com', cpf: '123456-2')
     rental_fi = Rental.create!(code: 'F092X123', start_date: Date.current, end_date: 1.day.from_now, 
                             client: client, car_category: car_category, user: user)
