@@ -7,9 +7,8 @@
 			<%= car.identification %>
 			<p>Carro Indisponível</p>
 		<% else %>
-			<%= car.status %>
 			<%= car.identification %>
-			<%= link_to 'Efetivar locação', ready_rental_path(car_id: car, rental_id: @rental), method: :post %>
+			<%= link_to 'Efetivar locação', rental_car_rentals_path(car_id: car, rental_id: @rental), method: :post %>
 		<% end %>
 	</div>
 <% end %>

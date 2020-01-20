@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Car, type: :model do
-	describe '.identification' do
+describe Car do
+	describe '#identification' do
     it 'should generate a identification' do
       car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 40, third_party_insurance: 30)
       manufacturer = Manufacturer.create!(name: 'Fiat')
