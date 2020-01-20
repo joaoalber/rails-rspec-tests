@@ -1,6 +1,7 @@
 class CarRentalsController < ApplicationController
 
 	def create
+		puts params
 		@car_rental = CarRental.new(params.permit(:rental_id, :car_id))
 		@car_rental.price = @car_rental.car.car_model.car_category.rental_price
 		@car_rental.initial_mileage = @car_rental.car.mileage

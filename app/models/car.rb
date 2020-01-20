@@ -1,6 +1,8 @@
 class Car < ApplicationRecord
   belongs_to :car_model
   belongs_to :subsidiary
+  has_one :car_rental
+  has_one :rental, through: :car_rentals
 
   enum status: { available: 0, unavailable: 5 }
   
