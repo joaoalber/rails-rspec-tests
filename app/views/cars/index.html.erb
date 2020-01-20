@@ -2,9 +2,9 @@
     <p>Nenhum modelo de carro cadastrado</p>
 <% end %>
 
- <%# <% @cars.each do |cars| %>
-    <%# <%= link_to cars.name, cars, class: "card bg-light mb-3" %>
-<%# <% end %> 
+<% @cars.each do |cars| %>
+    <%= link_to cars.car_model.name, cars, class: "card bg-light mb-3" %>
+<% end %> 
 
  <div class="aligned-buttons">
     <%= link_to 'Registrar novo carro', new_car_path, class: 'btn btn-primary' %>

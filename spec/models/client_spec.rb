@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Client, type: :model do
+describe Client do
 	describe '.identification' do
     it 'should generate a identification' do
 			client = Client.create(cpf: "745.291.293-20", name: 'John Doe', email: 'johndoe@gmail.com')

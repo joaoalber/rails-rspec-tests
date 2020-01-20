@@ -47,7 +47,9 @@ feature 'Admin effect rental' do
     visit rentals_path
     click_on 'f092'
     click_on 'Efetivar locação'
-    click_on 'Efetivar locação'
+    within("div#car-#{car.id}") do
+      click_on 'Efetivar locação'
+    end
     visit rentals_path
     click_on 'f092'
     
@@ -76,12 +78,10 @@ feature 'Admin effect rental' do
     visit rentals_path
     click_on 'f092'
     click_on 'Efetivar locação'
-    click_on 'Efetivar locação'
-    visit rentals_path
-    click_on 'x024'
-    click_on 'Efetivar locação'
-    
-    expect(page).to_not have_content('Efetivar locação')
-    expect(page).to have_content('Carro Indisponível')
+    within("div#car-#{car.id}") do
+      click_on 'Efetivar locação'
+    end
+
+    expect(car.reload).to be_unavailable
   end
 end
