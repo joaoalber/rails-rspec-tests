@@ -38,7 +38,7 @@ class RentalsController < ApplicationController
 	end
 
 	def effect
-		@rental.update(status: 'in_progress')
+		@rental.in_progress!
 		@car_rental = CarRental.new
 		@cars = @rental.car_category.cars
 	end
