@@ -15,7 +15,7 @@ class CarCategory < ApplicationRecord
   
 
   def rental_price
-    car_insurance + daily_rate + third_party_insurance
+    (car_insurance + daily_rate + third_party_insurance).to_i
   end
 
 end

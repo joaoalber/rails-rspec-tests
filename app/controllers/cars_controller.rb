@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-	
+
 	def index
 		@cars = Car.all
 	end
@@ -21,9 +21,6 @@ class CarsController < ApplicationController
 		@subsidiaries = Subsidiary.all
 		render :new
 	end
-	
-	
-
 
 	private
 

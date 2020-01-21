@@ -10,6 +10,14 @@ class RentalsController < ApplicationController
 	def show
 	end
 
+	def edit
+	end
+
+	def update
+		return redirect_to @rental, notice: 'Locação atualizada com sucesso' if @rental.update(rental_params)
+		render :edit
+	end
+
 	def new
 		@rental = Rental.new
 		load_dependencies
@@ -22,14 +30,6 @@ class RentalsController < ApplicationController
 		return redirect_to @rental, notice: 'Locação agendada com sucesso' if @rental.save
 		load_dependencies
 		render :new
-	end
-
-	def edit
-	end
-
-	def update
-		return redirect_to @rental, notice: 'Locação atualizada com sucesso' if @rental.update(rental_params)
-		render :edit
 	end
 
 	def search
