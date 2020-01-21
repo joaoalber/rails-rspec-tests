@@ -9,11 +9,15 @@ class CarCategoriesController < ApplicationController
     def show
     end
 
-    def new
-        @car_category = CarCategory.new
+    def edit
     end
 
-    def edit
+    def update
+        return redirect_to @car_category, notice: 'Categoria atualizada com sucesso' if @car_category.update(car_category_params)
+    end
+
+    def new
+        @car_category = CarCategory.new
     end
 
     def create
@@ -22,14 +26,9 @@ class CarCategoriesController < ApplicationController
         render :new
     end
 
-    def update
-        return redirect_to @car_category, notice: 'Categoria atualizada com sucesso' if @car_category.update(car_category_params)
-        
-    end
-
     def destroy
         @car_category.destroy!
-        redirect_to root_path, notice: 'Categoria deletada com sucesso'
+        redirect_to car_categories_path, notice: 'Categoria deletada com sucesso'
     end
 
     private

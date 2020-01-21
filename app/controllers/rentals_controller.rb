@@ -1,18 +1,18 @@
 class RentalsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :load_rental, only: [:update, :show, :edit, :effect]
+	before_action :load_dependencies, only: [:edit]
 	
 	def index
 		@rentals = Rental.all
 	end
 
 	def show
-		@rental = Rental.find(params[:id])
 	end
 
 	def new
 		@rental = Rental.new
-		@car_categories = CarCategory.all
-		@clients = Client.all
+		load_dependencies
 	end
 
 	def create
@@ -20,20 +20,16 @@ class RentalsController < ApplicationController
 		@rental.code = SecureRandom.hex(6)
 		@rental.user = current_user
 		return redirect_to @rental, notice: 'Locação agendada com sucesso' if @rental.save
-		@car_categories = CarCategory.all
-		@clients = Client.all
+		load_dependencies
 		render :new
 	end
 
 	def edit
-		@rental = Rental.find(params[:id])
-		@car_categories = CarCategory.all
-		@clients = Client.all
 	end
 
 	def update
-		@rental = Rental.find(params[:id])
 		return redirect_to @rental, notice: 'Locação atualizada com sucesso' if @rental.update(rental_params)
+		render :edit
 	end
 
 	def search
@@ -42,7 +38,6 @@ class RentalsController < ApplicationController
 	end
 
 	def effect
-		@rental = Rental.find(params[:id])
 		@rental.update(status: 'in_progress')
 		@car_rental = CarRental.new
 		@cars = @rental.car_category.cars
@@ -50,7 +45,17 @@ class RentalsController < ApplicationController
 
 	private
 
+	def load_dependencies
+		@car_categories = CarCategory.all
+		@clients = Client.all
+	end
+
+	def load_rental
+		@rental = Rental.find(params[:id])
+	end
+
 	def rental_params
 		params.require(:rental).permit(:start_date, :end_date, :car_category_id, :client_id)
 	end
+
 end

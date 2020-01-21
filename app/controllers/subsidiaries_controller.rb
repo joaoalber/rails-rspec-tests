@@ -9,22 +9,22 @@ class SubsidiariesController < ApplicationController
     def show
     end
 
-    def new
-        @subsidiary = Subsidiary.new
+    def edit 
     end
 
-    def edit 
+    def update
+        return redirect_to @subsidiary if @subsidiary.update(subsidiary_params)
+        render :edit
+    end
+
+    def new
+        @subsidiary = Subsidiary.new
     end
 
     def create
         @subsidiary = Subsidiary.new(subsidiary_params)
         return redirect_to @subsidiary, notice: "Filial cadastrada com sucesso" if @subsidiary.save
         render :new
-    end
-
-    def update
-        @subsidiary.update(subsidiary_params)
-        redirect_to @subsidiary
     end
 
     def destroy

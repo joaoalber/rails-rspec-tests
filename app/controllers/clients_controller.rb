@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :load_client, only: [:edit, :show, :update]
 	
 	def index
 		@clients = Client.all
@@ -16,15 +17,12 @@ class ClientsController < ApplicationController
 	end
 
 	def show 
-		@client = Client.find(params[:id])
 	end
 
 	def edit
-		@client = Client.find(params[:id])
 	end
 
 	def update
-		@client = Client.find(params[:id])
 		return redirect_to @client, notice: 'Cliente atualizado com sucesso' if @client.update(client_params)
 	end
 
@@ -35,6 +33,10 @@ class ClientsController < ApplicationController
 	end
 
 	private
+
+	def load_client 
+		@client = Client.find(params[:id])
+	end
 
 	def client_params
 		params.require(:client).permit(:cpf, :name, :email)
