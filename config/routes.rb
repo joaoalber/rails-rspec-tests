@@ -9,4 +9,10 @@ Rails.application.routes.draw do
     get 'effect', on: :member
     resources :car_rentals, only: [:create]
   end
+  namespace 'api' do
+    namespace 'v1' do
+      resources :cars, only: [:show]    
+    end
+  end
+  
 end
