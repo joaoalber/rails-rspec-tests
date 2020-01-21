@@ -17,7 +17,7 @@ describe Rental do
 
 			rental.valid?
 			
-			expect(rental.errors[:start_date]).to include("Data final deve ser depois da data inicial")
+			expect(rental.errors[:end_date]).to include("Data final deve ser depois da data inicial")
 		end
 	end
 
