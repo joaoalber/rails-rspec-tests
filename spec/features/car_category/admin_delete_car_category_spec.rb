@@ -18,7 +18,7 @@ feature 'Admin destroy car category' do
     end
 
     scenario 'and must be authenticated' do
-        visit car_category_path('whatever')
+        page.driver.submit :delete, car_category_path('whatever'), {}
         
         expect(current_path).to eq(new_user_session_path)
     end

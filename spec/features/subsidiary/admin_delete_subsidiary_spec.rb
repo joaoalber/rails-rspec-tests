@@ -16,4 +16,10 @@ feature 'Admin destroy subsidiary' do
         expect(Subsidiary.exists?(subs.id)).to eq(false)
         expect(page).to have_content('Filial deletada com sucesso')
     end
+
+    scenario 'and must be authenticated' do
+        page.driver.submit :delete, subsidiary_path('whatever'), {}
+        
+        expect(current_path).to eq(new_user_session_path)
+    end
 end

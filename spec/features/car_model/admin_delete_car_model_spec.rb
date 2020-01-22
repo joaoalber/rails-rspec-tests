@@ -21,7 +21,7 @@ feature 'Admin destroy car model' do
     end
 
     scenario 'and must be authenticated' do
-        visit car_model_path('whatever')
+        page.driver.submit :delete, car_model_path('whatever'), {}
         
         expect(current_path).to eq(new_user_session_path)
     end

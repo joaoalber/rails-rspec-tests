@@ -17,7 +17,7 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and must be authenticated' do
-    visit manufacturer_path('whatever')
+    page.driver.submit :delete, manufacturer_path('whatever'), {}
     
     expect(current_path).to eq(new_user_session_path)
 	end
