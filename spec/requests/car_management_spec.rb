@@ -46,7 +46,12 @@ describe 'Car management' do
 			expect(response.body).to include "#{another_car.license_plate}" 
 			expect(response.body).to include "#{car.license_plate}" 
 			
-			
+		end
+
+		it 'shouldnt render cars that not exists' do
+			get api_v1_cars_path
+
+			expect(response).to have_http_status(404)
 		end
 	end
 end

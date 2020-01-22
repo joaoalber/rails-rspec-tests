@@ -5,9 +5,7 @@ class Api::V1::CarsController < Api::V1::ApiController
 	end
 
 	def index
-		@car = Car.all
-		render json: @car
-		#return render json: @car, status: 200 if 
-		#head 404
+		return render json: @car, status: 200 if @car = Car.all.exists? ? Car.all : nil
+		head 404
 	end
 end
