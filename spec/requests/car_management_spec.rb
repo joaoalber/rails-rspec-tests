@@ -2,6 +2,7 @@ require 'rails_helper'
 describe 'Car management' do
 	context 'show' do
 		it 'renders a json successfully' do
+			
 			manufacturer = Manufacturer.create!(name: 'Fabricante A')
     	car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
     																	third_party_insurance: '100.65')
@@ -25,10 +26,12 @@ describe 'Car management' do
 
 			expect(response).to have_http_status(404)
 		end
+		
 	end
 
 	context 'index' do
 		it 'should render all cars' do
+
 			manufacturer = Manufacturer.create!(name: 'Fabricante A')
     	car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
     																	third_party_insurance: '100.65')
@@ -53,7 +56,45 @@ describe 'Car management' do
 
 			expect(response).to have_http_status(404)
 		end
-		
+
+	end
+
+	context 'create' do
+		it 'should return rendered car successfully' do
+			
+			manufacturer = Manufacturer.create!(name: 'Fabricante A')
+    	car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
+    																	third_party_insurance: '100.65')
+			car_model = CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
+																		car_category: car_category, fuel_type: 'Gasolina')
+			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
+
+			post api_v1_cars_path, 
+			params: {
+				car_model_id: car_model.id,
+				license_plate: 'CIC3301',
+				subsidiary_id: subsidiary.id,
+				mileage: 100,
+				color: 'Vermelho'
+			}
+
+			json = JSON.parse(response.body, symbolize_names: true)
+			
+			expect(response).to have_http_status(201)
+			expect(json[:car_model_id]).to eq(car_model.id)
+			expect(json[:subsidiary_id]).to eq(subsidiary.id)
+			expect(json[:license_plate]).to eq('CIC3301')
+			expect(json[:mileage]).to eq(100)
+			expect(json[:color]).to eq('Vermelho')
+
+		end
+
+		it 'shouldnt return/render a car with invalid data' do
+			post api_v1_cars_path, params: { hiphop: 'batalha' }
+
+			expect(response).to have_http_status(412)
+		end
+
 	end
 
 end
