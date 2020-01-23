@@ -26,7 +26,7 @@ describe 'Car management' do
 
 			expect(response).to have_http_status(404)
 		end
-		
+
 	end
 
 	context 'index' do
@@ -89,10 +89,39 @@ describe 'Car management' do
 
 		end
 
-		it 'shouldnt return/render a car with invalid data' do
+		it 'shouldnt return and render a car with invalid data' do
 			post api_v1_cars_path, params: { hiphop: 'batalha' }
 
 			expect(response).to have_http_status(412)
+		end
+
+	end
+
+	context 'update' do
+		
+		it 'should return and render a car modified by status' do
+
+			manufacturer = Manufacturer.create!(name: 'Fabricante A')
+    	car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
+    																	third_party_insurance: '100.65')
+			car_model = CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
+																		car_category: car_category, fuel_type: 'Gasolina')
+			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
+			car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary, mileage: 100, color: 'Vermelho')
+
+			patch api_v1_car_path(car), params: { status: 'unavailable' }
+
+			json = JSON.parse(response.body, symbolize_names: true)
+
+			expect(response).to have_http_status(200)
+			expect(json[:status]).to eq('unavailable')
+
+		end
+
+		it 'should return and render a car if not found' do
+			patch api_v1_car_path(999)
+
+			expect(response).to have_http_status(404)
 		end
 
 	end
