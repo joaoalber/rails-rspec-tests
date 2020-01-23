@@ -1,29 +1,28 @@
 class Api::V1::CarsController < Api::V1::ApiController
 
 	def show
-		return render json: @car, status: 200 if @car = Car.find_by(params[:id])
+		return render json: @car, status: :ok if @car = Car.find(params[:id])
 
-		head 404
 	end
 
 	def index
-		return render json: @car, status: 200 if @car = Car.all.exists? ? Car.all : false
+		@car = Car.all
+		return render json: @car, status: :ok if @car.exists?
 
-		head 404
+		head :not_found
 	end
 	
 	def create
-		return render json: @car, status: 201 if @car = Car.new(car_params).valid? ? Car.create(car_params) : false
+		@car = Car.new(car_params)
+		return render json: @car, status: :created if @car.save!
 		
-		head 412
 	end
 	
-	def update
-		return head 404 unless @car = Car.find_by(params[:id]) ? Car.find(params[:id]) : false
+	def status
+		@car = Car.find(params[:id])
+		return render json: @car.as_json(only: :status), status: :ok if @car.update!(params.permit(:status))
 
-		render json: @car.as_json(only: [:status]), status: 200 if @car.update(params.permit(:status))
 	end
-
 
 	private
 

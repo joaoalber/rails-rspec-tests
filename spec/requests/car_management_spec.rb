@@ -51,7 +51,7 @@ describe 'Car management' do
 			
 		end
 
-		it 'shouldnt render cars that not exists' do
+		it 'shouldnt render cars if not exists' do
 			get api_v1_cars_path
 
 			expect(response).to have_http_status(404)
@@ -69,14 +69,12 @@ describe 'Car management' do
 																		car_category: car_category, fuel_type: 'Gasolina')
 			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
 
-			post api_v1_cars_path, 
-			params: {
-				car_model_id: car_model.id,
-				license_plate: 'CIC3301',
-				subsidiary_id: subsidiary.id,
-				mileage: 100,
-				color: 'Vermelho'
-			}
+			post api_v1_cars_path, params: {  car_model_id: car_model.id,
+																				license_plate: 'CIC3301',
+																				subsidiary_id: subsidiary.id,
+																				mileage: 100,
+																				color: 'Vermelho'
+																			}
 
 			json = JSON.parse(response.body, symbolize_names: true)
 			
@@ -97,7 +95,7 @@ describe 'Car management' do
 
 	end
 
-	context 'update' do
+	context 'status' do
 		
 		it 'should return and render a car modified by status' do
 
@@ -109,7 +107,7 @@ describe 'Car management' do
 			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
 			car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary, mileage: 100, color: 'Vermelho')
 
-			patch api_v1_car_path(car), params: { status: 'unavailable' }
+			patch status_api_v1_car_path(car), params: { status: 'unavailable' }
 
 			json = JSON.parse(response.body, symbolize_names: true)
 
@@ -118,8 +116,25 @@ describe 'Car management' do
 
 		end
 
+		it 'should render precondition failed if invalid status' do
+				
+				car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000,
+        																	 third_party_insurance: 1499)
+        manufacturer = Manufacturer.create!(name: 'Chevrolet')
+        subsidiary = Subsidiary.create!(name: 'Filial1', cnpj:'75.980.885/0001-31', address: 'Rua teste')
+				car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
+					 														manufacturer: manufacturer, car_category: car_category)
+        car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
+
+				patch status_api_v1_car_path(car), params: { status: 'banana' }
+				
+				expect(response.body).to eq("'banana' is not a valid status")
+        expect(response).to have_http_status(412)
+				
+		end
+
 		it 'should return and render a car if not found' do
-			patch api_v1_car_path(999)
+			patch status_api_v1_car_path(999)
 
 			expect(response).to have_http_status(404)
 		end

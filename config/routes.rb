@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
-      resources :cars, only: [:show, :index, :create, :update]    
+      resources :cars, only: [:show, :index, :create, :update] do
+        patch 'status', on: :member
+      end  
     end
   end
   
