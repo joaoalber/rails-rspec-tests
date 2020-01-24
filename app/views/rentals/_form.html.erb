@@ -2,6 +2,7 @@
     <p>Você deve corrigir os seguintes erros para continuar:</p>
     <% @rental.errors.full_messages.each do |message| %>
         <div class="alert alert-danger" role="alert"><%= message %></div>
+    <% end %>
 <% end %>
 
 <%= form_with model: @rental, locals: true do |f| %>

@@ -5,9 +5,19 @@ class Rental < ApplicationRecord
   has_one :car_rental
   has_one :car, through: :car_rentals
 
-  validate :start_date_cannot_be_in_the_past, :end_date_cannot_be_before_start_date, :available_cars_in_category
+  validate :start_date_cannot_be_in_the_past, :end_date_cannot_be_before_start_date, :must_have_available_cars
+
   enum status: { scheduled: 0, in_progress: 5 }
+
+  before_create :generate_code
   
+  private
+
+  def must_have_available_cars
+    return if cars_available?
+
+    errors.add(:base, 'Não existem carros disponíveis desta categoria')
+  end
 
   def start_date_cannot_be_in_the_past
     if start_date.present? && start_date < Date.today
@@ -21,21 +31,32 @@ class Rental < ApplicationRecord
     end
   end
 
-  def available_cars_in_category
-    usedCars = 0
-    @car_categories = CarCategory.all
-    @rentals = Rental.where(start_date: Date.current)
-    @car_categories.each do |car_category|
-      @rentals.each do |rental|
-        if rental.car_category.name == car_category.name
-          usedCars = usedCars + 1
-          if usedCars >= car_category.cars.count
-            errors.add(:car_category, "Categoria #{car_category.name} não tem mais carros disponíveis,
-                      favor escolher outra")
-          end
-        end
-      end
+  def cars_available?
+     #Pegando todos os carros, a partir de todas models, vinculados à categoria dessa rental
+     cars = Car.where(car_model: car_category.car_models)
+
+     #Pegando todas as rentals associadas a essa categoria
+     rentals = car_category.rentals.to_a
+ 
+     #Passando por cada rental e verificando se, com base nas datas, ela pode ser descartada
+     rentals.select! do |rental|
+         rental.start_date.between?(start_date, end_date) || rental.end_date.between?(start_date, end_date)
+     end
+ 
+     #Comparando se o número de carros é maior que o número de rentals
+     cars.length > rentals.length
+  end
+
+  def generate_code
+    self.code = loop do
+      token = generate_random_token
+      break token unless Rental.exists?(code: token)
     end
+  end
+
+  def generate_random_token
+    charset = Array('A'..'Z') + Array(0..9)
+		Array.new(6) { charset.sample }.join
   end
 
 end

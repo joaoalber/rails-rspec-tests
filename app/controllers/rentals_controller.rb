@@ -25,7 +25,6 @@ class RentalsController < ApplicationController
 
 	def create
 		@rental = Rental.new(rental_params)
-		@rental.code = SecureRandom.hex(6)
 		@rental.user = current_user
 		return redirect_to @rental, notice: 'Locação agendada com sucesso' if @rental.save
 		load_dependencies
@@ -57,5 +56,7 @@ class RentalsController < ApplicationController
 	def rental_params
 		params.require(:rental).permit(:start_date, :end_date, :car_category_id, :client_id)
 	end
+
+	
 
 end
