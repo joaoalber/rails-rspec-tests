@@ -121,7 +121,7 @@ describe 'Car management' do
 				car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000,
         																	 third_party_insurance: 1499)
         manufacturer = Manufacturer.create!(name: 'Chevrolet')
-        subsidiary = Subsidiary.create!(name: 'Filial1', cnpj:'75.980.885/0001-31', address: 'Rua teste')
+        subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj:'75.980.885/0001-31', address: 'R. São João')
 				car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
 					 														manufacturer: manufacturer, car_category: car_category)
         car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
@@ -133,7 +133,7 @@ describe 'Car management' do
 				
 		end
 
-		it 'should return and render a car if not found' do
+		it 'should not return and render a car if not found' do
 			patch status_api_v1_car_path(999)
 
 			expect(response).to have_http_status(404)
@@ -141,4 +141,71 @@ describe 'Car management' do
 
 	end
 
+	context 'update' do
+		it 'should render json with success status' do
+			car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000, third_party_insurance: 1499)
+			manufacturer = Manufacturer.create!(name: 'Chevrolet')
+			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj:'75.980.885/0001-31', address: 'R. São João')
+			car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
+																		manufacturer: manufacturer, car_category: car_category)
+			car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
+
+			patch api_v1_car_path(car), params: { car_model_id: car_model.id, 
+																						license_plate: 'ARD-1321',
+																						color: 'Vermelho', 
+																						mileage: 120, 
+																						subsidiary_id: subsidiary.id,
+																						status: 'unavailable'
+																					}
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:car_model_id]).to eq(car_model.id)
+      expect(json[:license_plate]).to eq('ARD-1321')
+      expect(json[:color]).to eq('Vermelho')
+      expect(json[:mileage]).to eq(120)
+      expect(json[:subsidiary_id]).to eq(subsidiary.id)
+      expect(json[:car_model_id]).to eq(car_model.id)
+
+		end
+
+		it 'should render precondition failed status if invalid data' do
+			car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000, third_party_insurance: 1499)
+			manufacturer = Manufacturer.create!(name: 'Chevrolet')
+			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj:'75.980.885/0001-31', address: 'R. São João')
+			car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
+																		manufacturer: manufacturer, car_category: car_category)
+			car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
+
+			patch api_v1_car_path(car), params: { this_poem: 'is about param', 
+																						who_you: 'need to understand',
+																						can_i_be_valid?: 'they said nope', 
+																						so_i_guess: 'there is no hope', 
+																						but_im: 'feeling better',
+																						cuz_my_life: 'was made by tester'
+																					}
+
+		  expect(response).to have_http_status(412)
+		end
+
+		it 'should render precondition failed status if no data' do
+			car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000, third_party_insurance: 1499)
+			manufacturer = Manufacturer.create!(name: 'Chevrolet')
+			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj:'75.980.885/0001-31', address: 'R. São João')
+			car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
+																		manufacturer: manufacturer, car_category: car_category)
+			car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
+
+			patch api_v1_car_path(car), params: { car_model_id: '', 
+																						license_plate: '',
+																						color: '', 
+																						mileage: '', 
+																						subsidiary_id: '',
+																						status: ''
+																					}
+
+		  expect(response).to have_http_status(412)
+		end
+
+	end
 end

@@ -17,6 +17,13 @@ class Api::V1::CarsController < Api::V1::ApiController
 		return render json: @car, status: :created if @car.save!
 		
 	end
+
+	def update
+		@car = Car.find(params[:id])
+		return render json: @car, status: :ok if car_params.present? && @car.update!(car_params)
+
+		head :precondition_failed
+	end
 	
 	def status
 		@car = Car.find(params[:id])
