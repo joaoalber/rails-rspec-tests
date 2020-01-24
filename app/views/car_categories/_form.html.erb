@@ -1,7 +1,7 @@
 <% if @car_category.errors.any? %>
     <p>Você deve corrigir os seguintes erros para continuar:</p>
     <% @car_category.errors.full_messages.each do |message| %>
-        <p><%= message %></p>
+        <div class="alert alert-danger" role="alert"><%= message %></div>
     <% end %>
 <% end %>
 

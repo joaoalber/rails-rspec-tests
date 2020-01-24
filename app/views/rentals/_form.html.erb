@@ -1,8 +1,7 @@
 <% if @rental.errors.any? %>
     <p>Você deve corrigir os seguintes erros para continuar:</p>
     <% @rental.errors.full_messages.each do |message| %>
-        <p><%= message %></p>
-    <% end %>
+        <div class="alert alert-danger" role="alert"><%= message %></div>
 <% end %>
 
 <%= form_with model: @rental, locals: true do |f| %>
