@@ -3,7 +3,7 @@
 <%= @subsidiary.address %>
 
 <%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_subsidiary_path(@subsidiary), class: 'btn btn-warning' %>
-<%= link_to link_to icon('fas', 'trash', id: 'delete'), @subsidiary, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger' %>
+<%= link_to icon('fas', 'trash', id: 'delete'), @subsidiary, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger' %>
 <hr>
 <div class="aligned-buttons">
 	<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>

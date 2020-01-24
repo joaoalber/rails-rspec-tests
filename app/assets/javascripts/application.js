@@ -17,3 +17,5 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+const Swal = require('sweetalert2')
