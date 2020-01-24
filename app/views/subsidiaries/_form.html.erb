@@ -6,18 +6,18 @@
 <% end %>
 
 <%= form_for @subsidiary do |f| %>
-    <div class="form-row align-items-center">
-        <div class="col-md-4 mt-3">
+    <div class="form-row">
+        <div class="form-group col-md-6">
             <%= f.label :name, 'Nome' %>
-            <%= f.text_field :name %>
+            <%= f.text_field :name, class: "col", placeholder: "Loca Car" %>
         </div>
-        <div class="col-md-4 mt-3">
+        <div class="form-group col-md-6">
             <%= f.label :cnpj, 'CNPJ' %>
-            <%= f.text_field :cnpj %>
+            <%= f.text_field :cnpj, class: "col", placeholder: "75.980.885/0001-31" %>
         </div>
-        <div class="col-md-4 mt-3">
+        <div class="form-group col-md-12">
             <%= f.label :address, 'Endereço' %>
-            <%= f.text_field :address %>
+            <%= f.text_field :address, class: "col", placeholder: "Av. das Américas, 419" %>
         </div>
     </div>
     <%= f.submit 'Enviar', class: "btn btn-primary mt-3 float-right" %>

@@ -6,22 +6,22 @@
 <% end %>
 
 <%= form_for @car_category do |f| %>
-<div class="form-row align-items-center">
-    <div class="col-md-4 mt-3">
+<div class="form-row">
+    <div class="form-group col-md-6">
         <%= f.label :name, 'Nome' %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, class: "col", placeholder: "Categoria C - Moderno" %>
     </div>  
-    <div class="col-md-4 mt-3">
+    <div class="form-group col-md-6">
         <%= f.label :daily_rate, 'Diária' %>
-        <%= f.text_field :daily_rate %>
+        <%= f.text_field :daily_rate, class: "col", placeholder: "50" %>
     </div>
-    <div class="col-md-4 mt-3">
+    <div class="form-group col-md-6">
         <%= f.label :car_insurance, 'Seguro' %>
-        <%= f.text_field :car_insurance %>
+        <%= f.text_field :car_insurance, class: "col", placeholder: "30" %>
     </div>
-    <div class="col-md-4 mt-3">
+    <div class="form-group col-md-6">
         <%= f.label :third_party_insurance, 'Seguro contra terceiros' %>
-        <%= f.text_field :third_party_insurance %>
+        <%= f.text_field :third_party_insurance, class: "col", placeholder: "20" %>
     </div>
     </div>
     <%= f.submit 'Enviar', class: "btn btn-primary mt-3 float-right" %>
