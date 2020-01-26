@@ -1,10 +1,27 @@
-<%= @car_category.name %>
-<%= @car_category.daily_rate %>
-<%= @car_category.car_insurance %>
-<%= @car_category.third_party_insurance %>
+<div class="item-show">	
+	<strong>Categoria:</strong>
+	<%= @car_category.name %>
+	<br>
+	<strong>Diária:</strong>
+	R$<%= @car_category.daily_rate %>
+	<br>
+	<strong>Seguro:</strong>
+	R$<%= @car_category.car_insurance %>
+	<br>
+	<strong>Seguro contra terceiros:</strong>
+	R$<%= @car_category.third_party_insurance %>
+	<br>
+</div>
 
-<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_car_category_path(@car_category), class: 'btn btn-warning' %>
-<%= link_to icon('fas', 'trash-alt', id: 'delete'), @car_category,  method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
+<div class="icons-show">
+	<div class="single-icon">
+		<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_car_category_path(@car_category), class: 'btn btn-warning' %>
+	</div>
+	<div class="single-icon">	
+		<%= link_to icon('fas', 'trash-alt', id: 'delete'), @car_category,  method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
+	</div>
+</div>
+
 <hr>
 <div class="aligned-buttons">
 	<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>

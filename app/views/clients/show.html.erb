@@ -1,9 +1,24 @@
-<%= @client.name %>
-<%= @client.cpf %>
-<%= @client.email %>
+<div class="item-show">	
+	<strong>Nome:</strong>
+	<%= @client.name %>
+	<br>
+	<strong>CPF:</strong>
+	<%= @client.cpf %>
+	<br>
+	<strong>Email:</strong>
+	<%= @client.email %>
+	<br>
+</div>
 
-<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_client_path(@client), class: 'btn btn-warning' %>
-<%= link_to icon('fas', 'trash-alt', id: 'delete'), @client,  method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
+<div class="icons-show">
+	<div class="single-icon">
+		<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_client_path(@client), class: 'btn btn-warning' %>
+	</div>
+	<div class="single-icon">
+		<%= link_to icon('fas', 'trash-alt', id: 'delete'), @client,  method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
+	</div>
+</div>
+
 <hr>
 
 <div class="aligned-buttons">

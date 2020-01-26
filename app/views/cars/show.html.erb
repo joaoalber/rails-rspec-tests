@@ -1,9 +1,23 @@
-<%= @car.car_model.name %>
-<%= @car.license_plate %>
-<%= @car.color %>
-<%= @car.subsidiary.name %>
-<%= @car.mileage %>
-<%= @car.status %>
+<div class="item-show">		
+	<strong>Nome:</strong>
+	<%= @car.car_model.name %>
+	<br>
+	<strong>Placa:</strong>
+	<%= @car.license_plate %>
+	<br>
+	<strong>Cor:</strong>
+	<%= @car.color %>
+	<br>	
+	<strong>Filial:</strong>
+	<%= @car.subsidiary.name %>
+	<br>	
+	<strong>Quilometragem:</strong>
+	<%= @car.mileage %>KM
+	<br>
+	<strong>Status:</strong>
+	<%= @car.status %>
+	<br>
+</div>
 
 
 <div class="aligned-buttons">

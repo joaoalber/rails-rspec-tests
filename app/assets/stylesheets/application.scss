@@ -30,6 +30,19 @@
   transform: translate(-50%, -50%);
 }
 
+.icons-show {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item-show {
+  font-size: 20px;
+}
+
+.single-icon {
+  margin-right: 5px;
+}
+
 .login {
   left: 50%;
   top: 45%;

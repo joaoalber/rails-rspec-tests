@@ -2,15 +2,35 @@
 	<h1>Locação em progresso</h1>
 <% end %>
 
-<%= @rental.code %>
-<%= @rental.start_date.strftime("%d/%m/%Y") %>
-<%= @rental.end_date.strftime("%d/%m/%Y") %>
-<%= @rental.user.email %>
-<%= @rental.car_category.name %>
-<%= "#{@rental.client.cpf} - #{@rental.client.name}" %>
-<%= @rental.client.email %>
+<div class="item-show">	
+	<strong>Código da Locação:</strong>
+	<%= @rental.code %>
+	<br>
+	<strong>Data de Ínicio:</strong>
+	<%= @rental.start_date.strftime("%d/%m/%Y") %>
+	<br>
+	<strong>Data de término:</strong>
+	<%= @rental.end_date.strftime("%d/%m/%Y") %>
+	<br>
+	<strong>Email do funcionário:</strong>
+	<%= @rental.user.email %>
+	<br>
+	<strong>Categoria:</strong>
+	<%= @rental.car_category.name %>
+	<br>
+	<strong>Documento do Cliente:</strong>
+	<%= "#{@rental.client.cpf} - #{@rental.client.name}" %>
+	<br>
+	<strong>Email do Cliente:</strong>
+	<%= @rental.client.email %>
+	<br>
+</div>
 
-<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_rental_path(@rental), class: 'btn btn-warning' %>
+<div class="icons-show">
+	<div class="single-icon">
+		<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_rental_path(@rental), class: 'btn btn-warning' %>
+	</div>
+</div>
 <%# <%= link_to link_to icon('fas', 'trash', id: 'delete'), @rental, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger' %>
 <hr>
 

@@ -1,3 +1,11 @@
-<%= @car_rental.price %>
-<%= @car_rental.car.car_model.name %>
-<%= @car_rental.car.license_plate %>
+<div class="item-show">
+	<strong>Preço:</strong>
+	<%= @car_rental.price %>
+	<br>
+	<strong>Modelo:</strong>
+	<%= @car_rental.car.car_model.name %>
+	<br>
+	<strong>Placa:</strong>
+	<%= @car_rental.car.license_plate %>
+	<br>
+</div>

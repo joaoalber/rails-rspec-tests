@@ -1,12 +1,32 @@
-<%= @car_model.name %>
-<%= @car_model.year %>
-<%= @car_model.manufacturer.name %>
-<%= @car_model.motorization %>
-<%= @car_model.car_category.name %>
-<%= @car_model.fuel_type %>
+<div class="item-show">
+	<strong>Nome:</strong>
+	<%= @car_model.name %>
+	<br>
+	<strong>Ano:</strong>
+	<%= @car_model.year %>
+	<br>
+	<strong>Fabricante:</strong>
+	<%= @car_model.manufacturer.name %>
+	<br>
+	<strong>Motor:</strong>
+	<%= @car_model.motorization %>
+	<br>
+	<strong>Categoria:</strong>
+	<%= @car_model.car_category.name %>
+	<br>
+	<strong>Tipo de Combustível:</strong>
+	<%= @car_model.fuel_type %>
+	<br>
+</div>
 
-<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_car_model_path(@car_model), class: 'btn btn-warning' %>
-<%= link_to icon('fas', 'trash-alt', id: 'delete'), @car_model, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
+<div class="icons-show">
+	<div class="single-icon">
+		<%= link_to icon('fas', 'pencil-alt', id: 'edit'), edit_car_model_path(@car_model), class: 'btn btn-warning' %>
+	</div>
+	<div class="single-icon">
+		<%= link_to icon('fas', 'trash-alt', id: 'delete'), @car_model, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
+	</div>	
+</div>
 <hr>
 <div class="aligned-buttons">
 	<%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
