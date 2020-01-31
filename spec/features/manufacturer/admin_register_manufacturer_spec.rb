@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
+    user = create(:user)
     
     login_as(user, scope: :user)
     visit root_path
@@ -17,7 +17,8 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
+    user = create(:user)
+
     login_as(user, :scope => :user)
     visit root_path
     click_on 'Fabricantes'
@@ -31,15 +32,15 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and the name doesnt exists' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
-    Manufacturer.create!(name: 'Honda')
+    user = create(:user)
+    manufacturer = create(:manufacturer)
 
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
 
-    fill_in 'Nome', with: 'Honda'
+    fill_in 'Nome', with: 'Fiat'
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
@@ -47,7 +48,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and manufacturer doesnt exists' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
+    user = create(:user)
 
     login_as(user, scope: :user)
     visit root_path 
