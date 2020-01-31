@@ -2,18 +2,18 @@ require 'rails_helper'
 
 feature 'Admin destroy client' do
     scenario 'successfully' do
-        user = User.create!(email: "teste@teste.com", password: "123456")
-        client = Client.create!(name: 'Joao', email: 'joao@email.com', cpf: '123.563.212-58')
+        user = create(:user)
+        client = create(:client)
 
         login_as(user, scope: :user)
         visit root_path
         click_on 'Clientes'
-        click_on 'Joao'
+        click_on 'João da Silva'
         find(".btn.btn-danger").click
          
         expect(Client.exists?(client.id)).to eq(false)
         expect(page).to have_content('Cliente deletado com sucesso')
-        expect(page).to_not have_content('Joao')
+        expect(page).to_not have_content('João da Silva')
     end
 
     scenario 'and must be authenticated' do
