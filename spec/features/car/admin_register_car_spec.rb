@@ -2,13 +2,12 @@ require 'rails_helper'
 
 feature 'Admin register car' do
 	scenario 'sucessfully' do
-		user = User.create!(email: "teste@teste.com", password: "123456")
-		manufacturer = Manufacturer.create!(name: 'Fabricante A')
-    car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-    																	third_party_insurance: '100.65')
-		CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-										car_category: car_category, fuel_type: 'Gasolina')
-		Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
+		user = create(:user)
+		manufacturer = create(:manufacturer)
+		car_category = create(:car_category)
+		create(:subsidiary)
+		create(:car_model, car_category: car_category, manufacturer: manufacturer)
+		
 
 		login_as(user, :scope => :user)
 		visit root_path
@@ -17,21 +16,21 @@ feature 'Admin register car' do
 
 		fill_in 'Placa', with: 'CIC3301'
 		fill_in 'Cor', with: 'Vermelho'
-		select 'Fox', from: 'Modelo'
+		select 'Uno', from: 'Modelo'
 		fill_in 'Quilometragem', with: '15'
-		select 'Av. das Américas', from: 'Filial'
+		select 'Américas - Filial I', from: 'Filial'
 		click_on 'Enviar'
 
 		expect(page).to have_content('CIC3301')
 		expect(page).to have_content('Vermelho')
-		expect(page).to have_content('Fox')
+		expect(page).to have_content('Uno')
 		expect(page).to have_content('15')
-		expect(page).to have_content('Av. das Américas')
+		expect(page).to have_content('Américas - Filial I')
 
 	end
 
 	scenario 'and must be valid' do
-		user = User.create!(email: "teste@teste.com", password: "123456")
+		user = create(:user)
 	
 		login_as(user, :scope => :user)
 		visit new_car_path
@@ -46,7 +45,7 @@ feature 'Admin register car' do
 	end
 
 	scenario 'and mileage should be greater than 0' do
-		user = User.create!(email: "teste@teste.com", password: "123456")
+		user = create(:user)
 	
 		login_as(user, :scope => :user)
 		visit new_car_path
@@ -58,20 +57,17 @@ feature 'Admin register car' do
 	end
 
 	scenario 'and license_plate should be unique' do
-		user = User.create!(email: "teste@teste.com", password: "123456")
-		car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-    																	third_party_insurance: '100.65')
-		manufacturer = Manufacturer.create!(name: 'Fabricante A')
-		car_model = CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-																 car_category: car_category, fuel_type: 'Gasolina')
-		subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
-		car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary,
-											mileage: 100, color: 'Vermelho') 
+		user = create(:user)
+		manufacturer = create(:manufacturer)
+		car_category = create(:car_category)
+		subsidiary = create(:subsidiary)
+		car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+		create(:car, car_model: car_model, subsidiary: subsidiary)
 		
 		login_as(user, :scope => :user)
 		visit new_car_path
 
-		fill_in 'Placa', with: 'CIC3301'
+		fill_in 'Placa', with: 'DXC2132'
 		click_on 'Enviar'
 
 		expect(page).to have_content('Placa já existente')
