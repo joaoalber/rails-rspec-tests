@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
 
+#Factory Bot
+gem 'factory_bot_rails'
 #Animate Css
 gem 'animate-rails'
 #FontAwesome
