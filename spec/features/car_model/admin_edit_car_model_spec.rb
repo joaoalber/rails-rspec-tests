@@ -2,20 +2,17 @@ require 'rails_helper'
 
 feature 'Admin edits car model' do
   scenario 'successfully' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
-    manufacturer = Manufacturer.create!(name: 'Fabricante A')
-    Manufacturer.create!(name: 'Fabricante B')
-    car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-    third_party_insurance: '100.65')
-    CarCategory.create!(name: 'Categoria A', daily_rate: '10.33', car_insurance: '30.12', 
-    third_party_insurance: '100.63')
-    CarModel.create!(name: 'Modelo A', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-    car_category: car_category, fuel_type: 'Gasolina')
+    user = create(:user)
+    car_category = create(:car_category)
+		manufacturer = create(:manufacturer)
+    car_model = create(:car_model, manufacturer: manufacturer, car_category: car_category)
+    create(:manufacturer, name: "Fabricante B")
+    create(:car_category, name: "Categoria A")
 
     login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos'
-    click_on 'Modelo A'
+    click_on 'Uno'
     find(".btn.btn-warning").click
 
     fill_in 'Nome', with: 'Modelo B'

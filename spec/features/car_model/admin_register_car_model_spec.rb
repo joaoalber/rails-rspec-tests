@@ -2,35 +2,35 @@ require 'rails_helper'
 
 feature 'Admin register car model' do
   scenario 'successfully' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
-    login_as(user, :scope => :user)
-    CarCategory.create!(name: 'Categoria A', daily_rate: 4.50, car_insurance: 20.30,
-    third_party_insurance: 14.30)
-    Manufacturer.create!(name: 'Fabricante A')
+    user = create(:user)
+    create(:car_category)
+    create(:manufacturer)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Modelos'
     click_on 'Registrar novo modelo'
 
     fill_in 'Nome', with: 'Modelo A'
     fill_in 'Ano', with: '1992'
-    select 'Fabricante A', from: 'Fabricante'
+    select 'Fiat', from: 'Fabricante'
     fill_in 'Cavalos', with: '1200'
-    select 'Categoria A', from: 'Categoria'
+    select 'C', from: 'Categoria'
     fill_in 'Combustivel', with: 'Gasolina'
     click_on 'Enviar'
 
     expect(page).to have_content('Modelo A')
     expect(page).to have_content('1992')
-    expect(page).to have_content('Fabricante A')
+    expect(page).to have_content('Fiat')
     expect(page).to have_content('1200')
-    expect(page).to have_content('Categoria A')
+    expect(page).to have_content(/C/)
     expect(page).to have_content('Gasolina')
     expect(page).to have_content('Modelo de carro cadastrado com sucesso')
   end
 
   scenario 'and should fill all fields' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
+    user = create(:user)
+    
     login_as(user, :scope => :user)
     visit new_car_model_path
 
@@ -45,9 +45,11 @@ feature 'Admin register car model' do
   end
 
   scenario 'and if car models doesnt exists' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
+    user = create(:user)
+
     login_as(user, :scope => :user)
     visit root_path 
+    
     click_on 'Modelos'
 
     expect(page).to have_content('Nenhum modelo de carro cadastrado')

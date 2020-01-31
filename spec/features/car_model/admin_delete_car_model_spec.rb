@@ -2,17 +2,15 @@ require 'rails_helper'
 
 feature 'Admin destroy car model' do
     scenario 'successfully' do
-        user = User.create!(email: "teste@teste.com", password: "123456")
-        car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-																	third_party_insurance: '100.65')
-				manufacturer = Manufacturer.create!(name: 'Fabricante A')
-				car_model = CarModel.create!(name: 'Modelo A', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-                    									car_category: car_category, fuel_type: 'Gasolina')
+        user = create(:user)
+        car_category = create(:car_category)
+		manufacturer = create(:manufacturer)
+		car_model = create(:car_model, manufacturer: manufacturer, car_category: car_category)
 				
         login_as(user, scope: :user)
         visit root_path
         click_on 'Modelos'
-        click_on 'Modelo A'
+        click_on 'Uno'
         find(".btn.btn-danger").click
          
         expect(CarModel.exists?(car_model.id)).to eq(false)
