@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User login' do
 	scenario 'successfully' do
-		User.create!(email: 'teste@teste.com', password: '123456')
+		create(:user)
 
 		visit root_path
 		click_on 'Entrar'
@@ -21,7 +21,7 @@ feature 'User login' do
 	end
 
 	scenario 'and logout' do
-    User.create!(email: 'teste@teste.com', password: '123456')
+    create(:user)
     
     visit new_user_session_path
     within 'form' do
