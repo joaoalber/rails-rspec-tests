@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register subsidiary' do
   scenario 'successfully' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
+    user = create(:user)
     
     login_as(user, scope: :user)
     visit root_path
@@ -21,15 +21,15 @@ feature 'Admin register subsidiary' do
   end
 
   scenario 'and the name shouldnt be duplicated' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
-    Subsidiary.create!(name: 'General Motors', cnpj: '97.799.796/0001-26', address: 'r. tal')
+    user = create(:user)
+    create(:subsidiary)
 
     login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
 
-    fill_in 'Nome', with: 'General Motors'
+    fill_in 'Nome', with: 'Américas - Filial I'
     fill_in 'CNPJ', with: '97.799.796/0001-26'
     fill_in 'Endereço', with: 'r. tal'
     click_on 'Enviar'
@@ -39,7 +39,7 @@ feature 'Admin register subsidiary' do
   end
 
   scenario 'and the cnpj must be valid' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
+    user = create(:user)
     
     login_as(user, scope: :user)
     visit root_path
@@ -53,7 +53,7 @@ feature 'Admin register subsidiary' do
   end
 
   scenario 'and subsidiary doesnt exists' do
-    user = User.create!(email: "teste@teste.com", password: "123456")
+    user = create(:user)
     
     login_as(user, scope: :user)
     visit root_path 
