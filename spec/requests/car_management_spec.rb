@@ -2,14 +2,12 @@ require 'rails_helper'
 describe 'Car management' do
 	context 'show' do
 		it 'renders a json successfully' do
-			
-			manufacturer = Manufacturer.create!(name: 'Fabricante A')
-    	car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-    																	third_party_insurance: '100.65')
-			car_model = CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-																		car_category: car_category, fuel_type: 'Gasolina')
-			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
-			car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary, mileage: 100, color: 'Vermelho')
+				
+			manufacturer = create(:manufacturer)
+			car_category = create(:car_category)
+			subsidiary = create(:subsidiary)
+			car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+			car = create(:car, car_model: car_model, subsidiary: subsidiary)
 											
 			get api_v1_car_path(car)	
 			json = JSON.parse(response.body, symbolize_names: true)
@@ -32,14 +30,12 @@ describe 'Car management' do
 	context 'index' do
 		it 'should render all cars' do
 
-			manufacturer = Manufacturer.create!(name: 'Fabricante A')
-    	car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-    																	third_party_insurance: '100.65')
-			car_model = CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-																		car_category: car_category, fuel_type: 'Gasolina')
-			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
-			car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary, mileage: 100, color: 'Vermelho')
-			other_car = Car.create!(car_model: car_model, license_plate: 'DRA5820', subsidiary: subsidiary, mileage: 100, color: 'Azul')
+			manufacturer = create(:manufacturer)
+			car_category = create(:car_category)
+			subsidiary = create(:subsidiary)
+			car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+			car = create(:car, car_model: car_model, subsidiary: subsidiary)
+			other_car = create(:car, car_model: car_model, subsidiary: subsidiary, license_plate: 'DRA2121')
 
 			get api_v1_cars_path
 			
@@ -62,12 +58,10 @@ describe 'Car management' do
 	context 'create' do
 		it 'should return rendered car successfully' do
 			
-			manufacturer = Manufacturer.create!(name: 'Fabricante A')
-    	car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-    																	third_party_insurance: '100.65')
-			car_model = CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-																		car_category: car_category, fuel_type: 'Gasolina')
-			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
+			manufacturer = create(:manufacturer)
+			car_category = create(:car_category)
+			subsidiary = create(:subsidiary)
+			car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
 
 			post api_v1_cars_path, params: {  car_model_id: car_model.id,
 																				license_plate: 'CIC3301',
@@ -99,13 +93,11 @@ describe 'Car management' do
 		
 		it 'should return and render a car modified by status' do
 
-			manufacturer = Manufacturer.create!(name: 'Fabricante A')
-    	car_category = CarCategory.create!(name: 'Categoria X', daily_rate: '10.44', car_insurance: '30.24', 
-    																	third_party_insurance: '100.65')
-			car_model = CarModel.create!(name: 'Fox', year: '1992', manufacturer: manufacturer, motorization: '2000', 
-																		car_category: car_category, fuel_type: 'Gasolina')
-			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj: '75.980.885/0001-31', address: 'r. dos tamoios')
-			car = Car.create!(car_model: car_model, license_plate: 'CIC3301', subsidiary: subsidiary, mileage: 100, color: 'Vermelho')
+			manufacturer = create(:manufacturer)
+			car_category = create(:car_category)
+			subsidiary = create(:subsidiary)
+			car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+			car = create(:car, car_model: car_model, subsidiary: subsidiary)
 
 			patch status_api_v1_car_path(car), params: { status: 'unavailable' }
 
@@ -118,18 +110,16 @@ describe 'Car management' do
 
 		it 'should render precondition failed if invalid status' do
 				
-				car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000,
-        																	 third_party_insurance: 1499)
-        manufacturer = Manufacturer.create!(name: 'Chevrolet')
-        subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj:'75.980.885/0001-31', address: 'R. São João')
-				car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
-					 														manufacturer: manufacturer, car_category: car_category)
-        car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
+			manufacturer = create(:manufacturer)
+			car_category = create(:car_category)
+			subsidiary = create(:subsidiary)
+			car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+			car = create(:car, car_model: car_model, subsidiary: subsidiary)
 
-				patch status_api_v1_car_path(car), params: { status: 'banana' }
+			patch status_api_v1_car_path(car), params: { status: 'banana' }
 				
-				expect(response.body).to eq("'banana' is not a valid status")
-        expect(response).to have_http_status(412)
+			expect(response.body).to eq("'banana' is not a valid status")
+      expect(response).to have_http_status(412)
 				
 		end
 
@@ -143,12 +133,11 @@ describe 'Car management' do
 
 	context 'update' do
 		it 'should render json with success status' do
-			car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000, third_party_insurance: 1499)
-			manufacturer = Manufacturer.create!(name: 'Chevrolet')
-			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj:'75.980.885/0001-31', address: 'R. São João')
-			car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
-																		manufacturer: manufacturer, car_category: car_category)
-			car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
+			manufacturer = create(:manufacturer)
+			car_category = create(:car_category)
+			subsidiary = create(:subsidiary)
+			car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+			car = create(:car, car_model: car_model, subsidiary: subsidiary)
 
 			patch api_v1_car_path(car), params: { car_model_id: car_model.id, 
 																						license_plate: 'ARD-1321',
@@ -170,12 +159,11 @@ describe 'Car management' do
 		end
 
 		it 'should render precondition failed status if invalid data' do
-			car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000, third_party_insurance: 1499)
-			manufacturer = Manufacturer.create!(name: 'Chevrolet')
-			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj:'75.980.885/0001-31', address: 'R. São João')
-			car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
-																		manufacturer: manufacturer, car_category: car_category)
-			car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
+			manufacturer = create(:manufacturer)
+			car_category = create(:car_category)
+			subsidiary = create(:subsidiary)
+			car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+			car = create(:car, car_model: car_model, subsidiary: subsidiary)
 
 			patch api_v1_car_path(car), params: { this_poem: 'is about param', 
 																						who_you: 'need to understand',
@@ -189,12 +177,11 @@ describe 'Car management' do
 		end
 
 		it 'should render precondition failed status if no data' do
-			car_category = CarCategory.create!(name: 'A', daily_rate: 99, car_insurance: 1000, third_party_insurance: 1499)
-			manufacturer = Manufacturer.create!(name: 'Chevrolet')
-			subsidiary = Subsidiary.create!(name: 'Av. das Américas', cnpj:'75.980.885/0001-31', address: 'R. São João')
-			car_model = CarModel.create!(name: 'Celta', year: '2021', motorization: '2.0',fuel_type:'Flex',
-																		manufacturer: manufacturer, car_category: car_category)
-			car = Car.create!(license_plate: 'ABC-1234', color: 'Azul', car_model: car_model, mileage: 100, subsidiary: subsidiary, status: 0)
+			manufacturer = create(:manufacturer)
+			car_category = create(:car_category)
+			subsidiary = create(:subsidiary)
+			car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+			car = create(:car, car_model: car_model, subsidiary: subsidiary)
 
 			patch api_v1_car_path(car), params: { car_model_id: '', 
 																						license_plate: '',
