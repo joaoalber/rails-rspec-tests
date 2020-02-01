@@ -1,5 +1,5 @@
 class Client < ApplicationRecord
-  has_many :rentals
+  has_many :rentals, dependent: :destroy
 
 	def identification
     "#{cpf} - #{name}"

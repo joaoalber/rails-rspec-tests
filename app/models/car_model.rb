@@ -1,7 +1,7 @@
 class CarModel < ApplicationRecord
   belongs_to :manufacturer
   belongs_to :car_category
-  has_many :cars
+  has_many :cars, dependent: :destroy
 
   validates :name, presence: { message: 'Nome não pode ficar em branco' }
   validates :year, presence: { message: 'Ano não pode ficar em branco' }

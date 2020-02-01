@@ -2,7 +2,7 @@ class Rental < ApplicationRecord
   belongs_to :client
   belongs_to :car_category
   belongs_to :user
-  has_one :car_rental
+  has_one :car_rental, dependent: :destroy
   has_one :car, through: :car_rentals
 
   validate :start_date_cannot_be_in_the_past, :end_date_cannot_be_before_start_date, :must_have_available_cars

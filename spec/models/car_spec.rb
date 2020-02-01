@@ -3,17 +3,14 @@ require 'rails_helper'
 describe Car do
 	describe '#identification' do
     it 'should generate a identification' do
-      car_category = CarCategory.new(name: 'A', daily_rate: 100, car_insurance: 40, third_party_insurance: 30)
-      manufacturer = Manufacturer.new(name: 'Fiat')
-      car_model = CarModel.new(name: 'Uno', year: '2020',
-                                   motorization: '1.0', fuel_type: 'Flex',
-                                   car_category: car_category, manufacturer: manufacturer)
-      car = Car.new(car_model: car_model, color: 'Azul',
-                       license_plate: 'ABC1234', mileage: 100)
+      car_category = create(:car_category)
+      manufacturer = create(:manufacturer)
+      car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer) 
+      car = create(:car, car_model: car_model)
 
       result = car.identification
 
-      expect(result).to eq "Uno - ABC1234 - Azul"
+      expect(result).to eq "Uno - DXC2132 - Vermelho"
     end
 
     it 'should not generate a identification if car_model is nil' do

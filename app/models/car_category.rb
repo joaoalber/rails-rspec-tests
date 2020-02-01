@@ -1,7 +1,7 @@
 class CarCategory < ApplicationRecord
-  has_many :car_models
+  has_many :car_models, dependent: :destroy
   has_many :cars, through: :car_models  
-  has_many :rentals
+  has_many :rentals, dependent: :destroy
   
   validates :name, presence: { message: 'Nome não pode ficar em branco' }
   validates :daily_rate, presence: { message: 'Diária não pode ficar em branco' }
