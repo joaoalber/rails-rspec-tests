@@ -3,22 +3,22 @@ require 'rails_helper'
 feature 'Visitor view manufacturers' do
   scenario 'successfully' do
     user = create(:user)
-    manufacturer = create(:manufacturer)
-    manufacturer = create(:manufacturer, name: "Volkswagen")
+    create(:manufacturer)
+    create(:manufacturer, name: 'Volkswagen')
 
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
-  
+
     expect(page).to have_content('Fiat')
     expect(page).to have_link('Voltar')
   end
 
   scenario 'and return to home page' do
     user = create(:user)
-    manufacturer = create(:manufacturer)
-    manufacturer = create(:manufacturer, name: "Volkswagen")
+    create(:manufacturer)
+    create(:manufacturer, name: 'Volkswagen')
 
     login_as(user, scope: :user)
     visit root_path
@@ -46,5 +46,4 @@ feature 'Visitor view manufacturers' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-  
 end

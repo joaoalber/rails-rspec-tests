@@ -6,7 +6,7 @@ feature 'Admin register car model' do
     create(:car_category)
     create(:manufacturer)
 
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos'
     click_on 'Registrar novo modelo'
@@ -30,8 +30,8 @@ feature 'Admin register car model' do
 
   scenario 'and should fill all fields' do
     user = create(:user)
-    
-    login_as(user, :scope => :user)
+
+    login_as(user, scope: :user)
     visit new_car_model_path
 
     click_on 'Enviar'
@@ -40,16 +40,16 @@ feature 'Admin register car model' do
     expect(page).to have_content('Ano não pode ficar em branco')
     expect(page).to have_content('Nome não pode ficar em branco')
     expect(page).to have_content('Fabricante não pode ficar em branco')
-    expect(page).to have_content('Categoria não pode ficar em branco' )
+    expect(page).to have_content('Categoria não pode ficar em branco')
     expect(page).to have_content('Motorização contra terceiros')
   end
 
   scenario 'and if car models doesnt exists' do
     user = create(:user)
 
-    login_as(user, :scope => :user)
-    visit root_path 
-    
+    login_as(user, scope: :user)
+    visit root_path
+
     click_on 'Modelos'
 
     expect(page).to have_content('Nenhum modelo de carro cadastrado')
@@ -57,7 +57,7 @@ feature 'Admin register car model' do
 
   scenario 'and must be authenticated' do
     visit new_car_model_path
-    
+
     expect(current_path).to eq(new_user_session_path)
   end
 end

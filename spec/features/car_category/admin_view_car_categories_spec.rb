@@ -9,7 +9,7 @@ feature 'Visitor view car categories' do
     visit root_path
     click_on 'Categorias'
     click_on 'C'
-  
+
     expect(page).to have_content('C')
     expect(page).to have_content('50')
     expect(page).to have_content('70')
@@ -47,6 +47,4 @@ feature 'Visitor view car categories' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-
-
 end

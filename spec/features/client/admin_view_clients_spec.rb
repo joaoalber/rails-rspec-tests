@@ -4,17 +4,17 @@ feature 'Visitor view clients' do
   scenario 'successfully' do
     user = create(:user)
     create(:client, name: 'Gabriel', email: 'gabriel@email.com', cpf: '123.563.212-43')
-		create(:client)
-		
+    create(:client)
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Clientes'
     click_on 'João da Silva'
-  
+
     expect(page).to have_content('João da Silva')
     expect(page).to have_content('joao@email.com')
-		expect(page).to have_content('412.293.102-13')
-		expect(page).to_not have_content('Gabriel')
+    expect(page).to have_content('412.293.102-13')
+    expect(page).to_not have_content('Gabriel')
     expect(page).to have_link('Voltar')
   end
 
@@ -48,5 +48,4 @@ feature 'Visitor view clients' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-  
 end

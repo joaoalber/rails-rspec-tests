@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin register client' do
   scenario 'successfully' do
     user = create(:user)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Clientes'
@@ -19,11 +19,10 @@ feature 'Admin register client' do
     expect(page).to have_content('team@.com')
     expect(page).to have_content('Cliente cadastrado com sucesso')
   end
-  
+
   scenario 'and must be authenticated' do
     visit new_client_path
-    
+
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

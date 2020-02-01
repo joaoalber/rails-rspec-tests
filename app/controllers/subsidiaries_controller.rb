@@ -1,45 +1,44 @@
 class SubsidiariesController < ApplicationController
-    before_action :authenticate_user!
-    before_action :load_subsidiary, only: [:update, :show, :edit, :destroy]
+  before_action :authenticate_user!
+  before_action :load_subsidiary, only: %i[update show edit destroy]
 
-    def index
-        @subsidiaries = Subsidiary.all
-    end
+  def index
+    @subsidiaries = Subsidiary.all
+  end
 
-    def show
-    end
+  def show; end
 
-    def edit 
-    end
+  def edit; end
 
-    def update
-        return redirect_to @subsidiary if @subsidiary.update(subsidiary_params)
-        render :edit
-    end
+  def update
+    return redirect_to @subsidiary if @subsidiary.update(subsidiary_params)
 
-    def new
-        @subsidiary = Subsidiary.new
-    end
+    render :edit
+  end
 
-    def create
-        @subsidiary = Subsidiary.new(subsidiary_params)
-        return redirect_to @subsidiary, notice: "Filial cadastrada com sucesso" if @subsidiary.save
-        render :new
-    end
+  def new
+    @subsidiary = Subsidiary.new
+  end
 
-    def destroy
-        @subsidiary.destroy!
-        redirect_to root_path, notice: 'Filial deletada com sucesso'
-    end
+  def create
+    @subsidiary = Subsidiary.new(subsidiary_params)
+    return redirect_to @subsidiary, notice: 'Filial cadastrada com sucesso' if @subsidiary.save
 
-    private
+    render :new
+  end
 
-    def subsidiary_params
-        params.require(:subsidiary).permit(:name, :cnpj, :address)
-    end
+  def destroy
+    @subsidiary.destroy!
+    redirect_to root_path, notice: 'Filial deletada com sucesso'
+  end
 
-    def load_subsidiary
-        @subsidiary = Subsidiary.find(params[:id])
-    end
+  private
 
+  def subsidiary_params
+    params.require(:subsidiary).permit(:name, :cnpj, :address)
+  end
+
+  def load_subsidiary
+    @subsidiary = Subsidiary.find(params[:id])
+  end
 end

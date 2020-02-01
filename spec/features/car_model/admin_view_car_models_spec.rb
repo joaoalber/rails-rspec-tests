@@ -4,14 +4,14 @@ feature 'Visitor view car models' do
   scenario 'successfully' do
     user = create(:user)
     car_category = create(:car_category)
-		manufacturer = create(:manufacturer)
-    car_model = create(:car_model, manufacturer: manufacturer, car_category: car_category)
+    manufacturer = create(:manufacturer)
+    create(:car_model, manufacturer: manufacturer, car_category: car_category)
 
     login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos'
     click_on 'Uno'
-  
+
     expect(page).to have_content('Uno')
     expect(page).to have_content('2015')
     expect(page).to have_content('Fiat')
@@ -24,10 +24,10 @@ feature 'Visitor view car models' do
   scenario 'and return to home page' do
     user = create(:user)
     car_category = create(:car_category)
-		manufacturer = create(:manufacturer)
-    car_model = create(:car_model, manufacturer: manufacturer, car_category: car_category)
+    manufacturer = create(:manufacturer)
+    create(:car_model, manufacturer: manufacturer, car_category: car_category)
 
-    login_as(user, scope: :user)  
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos'
     click_on 'Uno'
@@ -53,5 +53,4 @@ feature 'Visitor view car models' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

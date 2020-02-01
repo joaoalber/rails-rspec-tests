@@ -4,7 +4,6 @@ feature 'Admin view subsidiaries' do
   scenario 'successfully' do
     user = create(:user)
     create(:subsidiary)
-    
 
     login_as(user, scope: :user)
     visit root_path

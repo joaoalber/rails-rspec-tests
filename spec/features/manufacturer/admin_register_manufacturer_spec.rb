@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
     user = create(:user)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
@@ -19,7 +19,7 @@ feature 'Admin register manufacturer' do
   scenario 'and must fill in all fields' do
     user = create(:user)
 
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
@@ -33,7 +33,7 @@ feature 'Admin register manufacturer' do
 
   scenario 'and the name doesnt exists' do
     user = create(:user)
-    manufacturer = create(:manufacturer)
+    create(:manufacturer)
 
     login_as(user, scope: :user)
     visit root_path
@@ -51,7 +51,7 @@ feature 'Admin register manufacturer' do
     user = create(:user)
 
     login_as(user, scope: :user)
-    visit root_path 
+    visit root_path
     click_on 'Fabricantes'
 
     expect(page).to have_content('Nenhuma fabricante cadastrada')
@@ -59,8 +59,7 @@ feature 'Admin register manufacturer' do
 
   scenario 'and must be authenticated' do
     visit new_manufacturer_path
-    
+
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

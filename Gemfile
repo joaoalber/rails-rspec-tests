@@ -3,20 +3,20 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-#Factory Bot
+# Factory Bot
 gem 'factory_bot_rails'
-#Animate Css
+# Animate Css
 gem 'animate-rails'
-#FontAwesome
+# FontAwesome
 gem 'font-awesome-sass', '~> 5.12.0'
-#Bootstrap
-gem 'jquery-rails'
+# Bootstrap
 gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-# Use Puma as the app server
+# Use Puma as the app server,
 gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -31,8 +31,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # CNPJ/CPF Validator
+gem 'cpf_cnpj'
 gem 'validators'
-gem "cpf_cnpj"
 # Auth
 gem 'devise'
 
@@ -47,7 +47,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # RSpec for Rails-3+
   gem 'rspec-rails', '~> 3.9'
 end
@@ -55,9 +55,9 @@ end
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'rubocop-rails', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rubocop-rails', require: false
 end
 
 group :test do
@@ -66,4 +66,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

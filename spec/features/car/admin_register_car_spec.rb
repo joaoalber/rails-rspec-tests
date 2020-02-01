@@ -1,77 +1,73 @@
 require 'rails_helper'
 
 feature 'Admin register car' do
-	scenario 'sucessfully' do
-		user = create(:user)
-		manufacturer = create(:manufacturer)
-		car_category = create(:car_category)
-		create(:subsidiary)
-		create(:car_model, car_category: car_category, manufacturer: manufacturer)
-		
+  scenario 'sucessfully' do
+    user = create(:user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category)
+    create(:subsidiary)
+    create(:car_model, car_category: car_category, manufacturer: manufacturer)
 
-		login_as(user, :scope => :user)
-		visit root_path
-		click_on 'Carros'
-		click_on 'Registrar novo carro'
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Carros'
+    click_on 'Registrar novo carro'
 
-		fill_in 'Placa', with: 'CIC3301'
-		fill_in 'Cor', with: 'Vermelho'
-		select 'Uno', from: 'Modelo'
-		fill_in 'Quilometragem', with: '15'
-		select 'Américas - Filial I', from: 'Filial'
-		click_on 'Enviar'
+    fill_in 'Placa', with: 'CIC3301'
+    fill_in 'Cor', with: 'Vermelho'
+    select 'Uno', from: 'Modelo'
+    fill_in 'Quilometragem', with: '15'
+    select 'Américas - Filial I', from: 'Filial'
+    click_on 'Enviar'
 
-		expect(page).to have_content('CIC3301')
-		expect(page).to have_content('Vermelho')
-		expect(page).to have_content('Uno')
-		expect(page).to have_content('15')
-		expect(page).to have_content('Américas - Filial I')
+    expect(page).to have_content('CIC3301')
+    expect(page).to have_content('Vermelho')
+    expect(page).to have_content('Uno')
+    expect(page).to have_content('15')
+    expect(page).to have_content('Américas - Filial I')
+  end
 
-	end
+  scenario 'and must be valid' do
+    user = create(:user)
 
-	scenario 'and must be valid' do
-		user = create(:user)
-	
-		login_as(user, :scope => :user)
-		visit new_car_path
+    login_as(user, scope: :user)
+    visit new_car_path
 
-		click_on 'Enviar'
+    click_on 'Enviar'
 
-		expect(page).to have_content('Placa não pode ficar em branco')
-		expect(page).to have_content('Cor não pode ficar em branco')
-		expect(page).to have_content('Modelo não pode ficar em branco')
-		expect(page).to have_content('Quilometragem não pode ficar em branco')
-		expect(page).to have_content('Filial não pode ficar em branco')
-	end
+    expect(page).to have_content('Placa não pode ficar em branco')
+    expect(page).to have_content('Cor não pode ficar em branco')
+    expect(page).to have_content('Modelo não pode ficar em branco')
+    expect(page).to have_content('Quilometragem não pode ficar em branco')
+    expect(page).to have_content('Filial não pode ficar em branco')
+  end
 
-	scenario 'and mileage should be greater than 0' do
-		user = create(:user)
-	
-		login_as(user, :scope => :user)
-		visit new_car_path
+  scenario 'and mileage should be greater than 0' do
+    user = create(:user)
 
-		fill_in 'Quilometragem', with: '0'
-		click_on 'Enviar'
+    login_as(user, scope: :user)
+    visit new_car_path
 
-		expect(page).to have_content('Quilometragem deve ser superior a 0')
-	end
+    fill_in 'Quilometragem', with: '0'
+    click_on 'Enviar'
 
-	scenario 'and license_plate should be unique' do
-		user = create(:user)
-		manufacturer = create(:manufacturer)
-		car_category = create(:car_category)
-		subsidiary = create(:subsidiary)
-		car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
-		create(:car, car_model: car_model, subsidiary: subsidiary)
-		
-		login_as(user, :scope => :user)
-		visit new_car_path
+    expect(page).to have_content('Quilometragem deve ser superior a 0')
+  end
 
-		fill_in 'Placa', with: 'DXC2132'
-		click_on 'Enviar'
+  scenario 'and license_plate should be unique' do
+    user = create(:user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category)
+    subsidiary = create(:subsidiary)
+    car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+    create(:car, car_model: car_model, subsidiary: subsidiary)
 
-		expect(page).to have_content('Placa já existente')
+    login_as(user, scope: :user)
+    visit new_car_path
 
-	end
+    fill_in 'Placa', with: 'DXC2132'
+    click_on 'Enviar'
 
+    expect(page).to have_content('Placa já existente')
+  end
 end

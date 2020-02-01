@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin register subsidiary' do
   scenario 'successfully' do
     user = create(:user)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
@@ -40,7 +40,7 @@ feature 'Admin register subsidiary' do
 
   scenario 'and the cnpj must be valid' do
     user = create(:user)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
@@ -54,9 +54,9 @@ feature 'Admin register subsidiary' do
 
   scenario 'and subsidiary doesnt exists' do
     user = create(:user)
-    
+
     login_as(user, scope: :user)
-    visit root_path 
+    visit root_path
     click_on 'Filiais'
 
     expect(page).to have_content('Nenhuma filial cadastrada')
@@ -64,8 +64,7 @@ feature 'Admin register subsidiary' do
 
   scenario 'and must be authenticated' do
     visit new_subsidiary_path
-    
+
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

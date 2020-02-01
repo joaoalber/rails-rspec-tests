@@ -10,6 +10,4 @@ class CarModel < ApplicationRecord
                                       não pode ficar em branco' }
   validates :car_category_id, presence: { message: 'Categoria não pode ficar em branco' }
   validates :fuel_type, presence: { message: 'Combustivel não pode ficar em branco' }
-  
-
 end

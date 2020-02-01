@@ -3,13 +3,13 @@ require 'rails_helper'
 feature 'Admin edits subsidiary' do
   scenario 'successfully' do
     user = create(:user)
-    subs = create(:subsidiary)
+    create(:subsidiary)
 
     login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Américas - Filial I'
-    find(".btn.btn-warning").click
+    find('.btn.btn-warning').click
 
     fill_in 'Nome', with: 'Concessionária PR'
     fill_in 'CNPJ', with: '97.799.796/0001-26'
@@ -23,8 +23,7 @@ feature 'Admin edits subsidiary' do
 
   scenario 'and must be authenticated' do
     visit edit_subsidiary_path('whatever')
-    
+
     expect(current_path).to eq(new_user_session_path)
   end
-  
 end

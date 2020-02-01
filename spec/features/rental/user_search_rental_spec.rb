@@ -3,51 +3,51 @@ require 'rails_helper'
 feature 'Search rental' do
   scenario 'by exact code' do
     user = create(:user)
-		manufacturer = create(:manufacturer)
-		car_category = create(:car_category)
-		subsidiary = create(:subsidiary)
-		client = create(:client)
-		car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
-    car = create(:car, car_model: car_model, subsidiary: subsidiary)
-		rental = create(:rental, client: client, car_category: car_category, user: user)  
-		other_rental = create(:rental, client: client, car_category: car_category, user: user)  
-									
-		login_as(user, scope: :user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category)
+    subsidiary = create(:subsidiary)
+    client = create(:client)
+    car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+    create(:car, car_model: car_model, subsidiary: subsidiary)
+    rental = create(:rental, client: client, car_category: car_category, user: user)
+    other_rental = create(:rental, client: client, car_category: car_category, user: user)
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Locações'
-    fill_in 'Pesquisar', with: "#{rental.code}"
+    fill_in 'Pesquisar', with: rental.code.to_s
     click_on 'Buscar'
 
-    expect(page).to have_content("#{rental.code}")
-    
-    expect(page).to_not have_content("#{other_rental.code}")
+    expect(page).to have_content(rental.code.to_s)
+
+    expect(page).to_not have_content(other_rental.code.to_s)
   end
 
   scenario 'by partial code' do
     user = create(:user)
-		manufacturer = create(:manufacturer)
-		car_category = create(:car_category)
-		subsidiary = create(:subsidiary)
-		client = create(:client)
-		car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
-    car = create(:car, car_model: car_model, subsidiary: subsidiary)
-		rental = create(:rental, client: client, car_category: car_category, user: user)  
-		other_rental = create(:rental, client: client, car_category: car_category, user: user) 
-									
-		login_as(user, scope: :user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category)
+    subsidiary = create(:subsidiary)
+    client = create(:client)
+    car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+    create(:car, car_model: car_model, subsidiary: subsidiary)
+    rental = create(:rental, client: client, car_category: car_category, user: user)
+    other_rental = create(:rental, client: client, car_category: car_category, user: user)
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Locações'
-    fill_in 'Pesquisar', with: "#{rental.code.first(3)}"
+    fill_in 'Pesquisar', with: rental.code.first(3).to_s
     click_on 'Buscar'
 
-    expect(page).to have_content("#{rental.code}")
+    expect(page).to have_content(rental.code.to_s)
 
-    expect(page).to_not have_content("#{other_rental.code}")
+    expect(page).to_not have_content(other_rental.code.to_s)
   end
 
   scenario 'and not exists' do
     user = create(:user)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Locações'
@@ -59,5 +59,4 @@ feature 'Search rental' do
     click_on 'Voltar'
     expect(current_path).to eq rentals_path
   end
-
 end

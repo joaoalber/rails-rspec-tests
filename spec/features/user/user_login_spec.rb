@@ -1,28 +1,27 @@
 require 'rails_helper'
 
 feature 'User login' do
-	scenario 'successfully' do
-		create(:user)
+  scenario 'successfully' do
+    create(:user)
 
-		visit root_path
-		click_on 'Entrar'
+    visit root_path
+    click_on 'Entrar'
 
-		within 'form' do
+    within 'form' do
       fill_in 'Email', with: 'teste@teste.com'
       fill_in 'Senha', with: '123456'
       click_on 'Entrar'
-		end
+    end
 
-		expect(page).to have_content('Signed in successfully.')
-		expect(page).to have_link('Sair')
+    expect(page).to have_content('Signed in successfully.')
+    expect(page).to have_link('Sair')
     expect(page).not_to have_link('Entrar')
     expect(current_path).to eq(root_path)
+  end
 
-	end
-
-	scenario 'and logout' do
+  scenario 'and logout' do
     create(:user)
-    
+
     visit new_user_session_path
     within 'form' do
       fill_in 'Email', with: 'teste@teste.com'
@@ -30,13 +29,11 @@ feature 'User login' do
 
       click_on 'Entrar'
     end
-    
+
     click_on 'Sair'
 
-		expect(page).to have_content 'Signed out successfully.'
-		expect(page).to have_link('Entrar')
-		expect(page).not_to have_link('Sair')
-		
+    expect(page).to have_content 'Signed out successfully.'
+    expect(page).to have_link('Entrar')
+    expect(page).not_to have_link('Sair')
   end
-
 end
