@@ -1,3 +1,7 @@
+<% if @clients.empty? %>
+    <p>Nenhum cliente cadastrado</p>
+<% end %>
+
 <% @clients.each do |client| %>
     <%= link_to client.name, client, class: "card bg-light mb-3" %>
 <% end %>
