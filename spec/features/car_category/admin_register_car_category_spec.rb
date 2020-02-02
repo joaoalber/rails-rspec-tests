@@ -19,7 +19,7 @@ feature 'Admin register car category' do
     expect(page).to have_content('10.5')
     expect(page).to have_content('200.32')
     expect(page).to have_content('100.35')
-    expect(page).to have_content('Categoria de carro cadastrada com sucesso')
+    expect(page).to have_content('Categoria de carro registrada com sucesso')
   end
 
   scenario 'and must fill in all fields' do

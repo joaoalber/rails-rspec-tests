@@ -14,7 +14,7 @@ class CarModelsController < ApplicationController
   def update
     return unless @car_model.update(car_model_params)
 
-    redirect_to @car_model, notice: 'Modelo atualizado com sucesso'
+    redirect_to @car_model, notice: t('.success')
   end
 
   def new
@@ -23,14 +23,14 @@ class CarModelsController < ApplicationController
 
   def create
     @car_model = CarModel.new(car_model_params)
-    return redirect_to @car_model, notice: 'Modelo de carro cadastrado com sucesso' if @car_model.save
+    return redirect_to @car_model, notice: t('.success') if @car_model.save
 
     load_dependencies
     render :new
   end
 
   def destroy
-    return redirect_to car_models_path, notice: 'Modelo deletado com sucesso' if @car_model.destroy
+    return redirect_to car_models_path, notice: t('.success') if @car_model.destroy
 
     render :index
   end

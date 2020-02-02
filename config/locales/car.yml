@@ -1,0 +1,19 @@
+---
+pt-BR:
+  cars:
+    create:
+      success: 'Carro registrado com sucesso'
+  activerecord:
+    models:
+      car:
+        one: 'Carro'
+        other: 'Carros'
+    attributes:
+      car:
+        license_plate: 'Placa'
+        color: 'Cor'
+        mileage: 'Quilometragem'
+        subsidiary_id: 'Filial'
+        subsidiary: 'Filial'
+        car_model_id: 'Modelo do carro'
+        car_model: 'Modelo do carro'

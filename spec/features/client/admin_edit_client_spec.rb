@@ -12,7 +12,7 @@ feature 'Admin edit client' do
     find('.btn.btn-warning').click
 
     fill_in 'Nome', with: 'Gabriel'
-    fill_in 'Email', with: 'gabriel@email.com'
+    fill_in 'E-mail', with: 'gabriel@email.com'
     fill_in 'CPF', with: '329.201.239-48'
 
     click_on 'Enviar'

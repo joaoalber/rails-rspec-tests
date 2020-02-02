@@ -20,6 +20,7 @@ feature 'Admin register car' do
     select 'Américas - Filial I', from: 'Filial'
     click_on 'Enviar'
 
+    expect(page).to have_content('Carro registrado com sucesso')
     expect(page).to have_content('CIC3301')
     expect(page).to have_content('Vermelho')
     expect(page).to have_content('Uno')
@@ -37,9 +38,9 @@ feature 'Admin register car' do
 
     expect(page).to have_content('Placa não pode ficar em branco')
     expect(page).to have_content('Cor não pode ficar em branco')
-    expect(page).to have_content('Modelo não pode ficar em branco')
+    expect(page).to have_content('Modelo do carro é obrigatório(a)')
     expect(page).to have_content('Quilometragem não pode ficar em branco')
-    expect(page).to have_content('Filial não pode ficar em branco')
+    expect(page).to have_content('Filial é obrigatório(a)')
   end
 
   scenario 'and mileage should be greater than 0' do
@@ -51,7 +52,7 @@ feature 'Admin register car' do
     fill_in 'Quilometragem', with: '0'
     click_on 'Enviar'
 
-    expect(page).to have_content('Quilometragem deve ser superior a 0')
+    expect(page).to have_content('Quilometragem deve ser maior que 0')
   end
 
   scenario 'and license_plate should be unique' do
@@ -68,6 +69,6 @@ feature 'Admin register car' do
     fill_in 'Placa', with: 'DXC2132'
     click_on 'Enviar'
 
-    expect(page).to have_content('Placa já existente')
+    expect(page).to have_content('Placa já está em uso')
   end
 end

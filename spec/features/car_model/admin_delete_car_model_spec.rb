@@ -14,7 +14,7 @@ feature 'Admin destroy car model' do
     find('.btn.btn-danger').click
 
     expect(CarModel.exists?(car_model.id)).to eq(false)
-    expect(page).to have_content('Modelo deletado com sucesso')
+    expect(page).to have_content('Modelo de carro deletado com sucesso')
     expect(page).to_not have_content('Modelo A')
   end
 

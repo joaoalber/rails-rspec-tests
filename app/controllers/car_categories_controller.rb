@@ -13,7 +13,7 @@ class CarCategoriesController < ApplicationController
   def update
     return unless @car_category.update(car_category_params)
 
-    redirect_to @car_category, notice: 'Categoria atualizada com sucesso'
+    redirect_to @car_category, notice: t('.success')
   end
 
   def new
@@ -24,12 +24,12 @@ class CarCategoriesController < ApplicationController
     @car_category = CarCategory.new(car_category_params)
     return render :new unless @car_category.save
 
-    redirect_to @car_category, notice: 'Categoria de carro cadastrada com sucesso'
+    redirect_to @car_category, notice: t('.success')
   end
 
   def destroy
     @car_category.destroy!
-    redirect_to car_categories_path, notice: 'Categoria deletada com sucesso'
+    redirect_to car_categories_path, notice: t('.success')
   end
 
   private

@@ -3,11 +3,8 @@ class CarModel < ApplicationRecord
   belongs_to :car_category
   has_many :cars, dependent: :destroy
 
-  validates :name, presence: { message: 'Nome não pode ficar em branco' }
-  validates :year, presence: { message: 'Ano não pode ficar em branco' }
-  validates :manufacturer_id, presence: { message: 'Fabricante não pode ficar em branco' }
-  validates :motorization, presence: { message: 'Motorização contra terceiros
-                                      não pode ficar em branco' }
-  validates :car_category_id, presence: { message: 'Categoria não pode ficar em branco' }
-  validates :fuel_type, presence: { message: 'Combustivel não pode ficar em branco' }
+  validates :name, presence: true
+  validates :year, presence: true
+  validates :motorization, presence: true
+  validates :fuel_type, presence: true
 end

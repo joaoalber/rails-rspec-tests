@@ -19,6 +19,7 @@ feature 'Admin edits subsidiary' do
     expect(page).to have_content('Concessionária PR')
     expect(page).to have_content('97.799.796/0001-26')
     expect(page).to have_content('r. dos testes')
+    expect(page).to have_content('Filial atualizada com sucesso')
   end
 
   scenario 'and must be authenticated' do

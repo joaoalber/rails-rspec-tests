@@ -11,9 +11,9 @@ class SubsidiariesController < ApplicationController
   def edit; end
 
   def update
-    return redirect_to @subsidiary if @subsidiary.update(subsidiary_params)
+    return render :edit unless @subsidiary.update(subsidiary_params)
 
-    render :edit
+    redirect_to @subsidiary, notice: t('.success')
   end
 
   def new
@@ -22,14 +22,14 @@ class SubsidiariesController < ApplicationController
 
   def create
     @subsidiary = Subsidiary.new(subsidiary_params)
-    return redirect_to @subsidiary, notice: 'Filial cadastrada com sucesso' if @subsidiary.save
+    return redirect_to @subsidiary, notice: t('.success') if @subsidiary.save
 
     render :new
   end
 
   def destroy
     @subsidiary.destroy!
-    redirect_to root_path, notice: 'Filial deletada com sucesso'
+    redirect_to root_path, notice: t('.success')
   end
 
   private

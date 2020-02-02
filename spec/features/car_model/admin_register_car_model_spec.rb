@@ -14,9 +14,9 @@ feature 'Admin register car model' do
     fill_in 'Nome', with: 'Modelo A'
     fill_in 'Ano', with: '1992'
     select 'Fiat', from: 'Fabricante'
-    fill_in 'Cavalos', with: '1200'
+    fill_in 'Motorização', with: '1200'
     select 'C', from: 'Categoria'
-    fill_in 'Combustivel', with: 'Gasolina'
+    fill_in 'Tipo de combustível', with: 'Gasolina'
     click_on 'Enviar'
 
     expect(page).to have_content('Modelo A')
@@ -25,7 +25,7 @@ feature 'Admin register car model' do
     expect(page).to have_content('1200')
     expect(page).to have_content(/C/)
     expect(page).to have_content('Gasolina')
-    expect(page).to have_content('Modelo de carro cadastrado com sucesso')
+    expect(page).to have_content('Modelo de carro registrado com sucesso')
   end
 
   scenario 'and should fill all fields' do
@@ -39,9 +39,9 @@ feature 'Admin register car model' do
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
     expect(page).to have_content('Ano não pode ficar em branco')
     expect(page).to have_content('Nome não pode ficar em branco')
-    expect(page).to have_content('Fabricante não pode ficar em branco')
-    expect(page).to have_content('Categoria não pode ficar em branco')
-    expect(page).to have_content('Motorização contra terceiros')
+    expect(page).to have_content('Fabricante é obrigatório(a)')
+    expect(page).to have_content('Categoria é obrigatório(a)')
+    expect(page).to have_content('Motorização não pode ficar em branco')
   end
 
   scenario 'and if car models doesnt exists' do

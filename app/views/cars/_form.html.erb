@@ -8,23 +8,23 @@
 <%= form_for @car do |f| %>
     <div class="form-row">
         <div class="form-group col-md-4">
-            <%= f.label :license_plate, 'Placa' %>
+            <%= f.label :license_plate %>
             <%= f.text_field :license_plate, class: "col", placeholder: "ABC1234"%>
         </div>
         <div class="form-group col-md-4">
-            <%= f.label :color, 'Cor' %>
+            <%= f.label :color %>
             <%= f.text_field :color, class: "col", placeholder: "Turquesa" %>
         </div>
         <div class="form-group col-md-4">
-            <%= f.label :mileage, 'Quilometragem' %>
+            <%= f.label :mileage %>
             <%= f.text_field :mileage, class: "col", placeholder: "125" %>
         </div>
         <div class="form-group col-md-6">
-            <%= f.label :car_model_id, 'Modelo' %>
+            <%= f.label :car_model_id %>
             <%= f.collection_select :car_model_id, @car_models, :id, :name, {include_blank: false}, {class: 'custom-select'} %>
         </div>
         <div class="form-group col-md-6">
-            <%= f.label :subsidiary_id, 'Filial' %>
+            <%= f.label :subsidiary_id %>
             <%= f.collection_select :subsidiary_id, @subsidiaries, :id, :name, {include_blank: false}, {class: 'custom-select'}  %>
         </div>
     </div>

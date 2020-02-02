@@ -15,7 +15,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    return redirect_to @car, notice: 'Carro cadastrado com sucesso' if @car.save
+    return redirect_to @car, notice: t('.success') if @car.save
 
     @car_models = CarModel.all
     @subsidiaries = Subsidiary.all

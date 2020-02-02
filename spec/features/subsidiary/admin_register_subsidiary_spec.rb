@@ -17,7 +17,7 @@ feature 'Admin register subsidiary' do
     expect(page).to have_content('General Motors')
     expect(page).to have_content('31.480.978/0001-21')
     expect(page).to have_content('R. das Palmeiras, 818')
-    expect(page).to have_content('Filial cadastrada com sucesso')
+    expect(page).to have_content('Filial registrada com sucesso')
   end
 
   scenario 'and the name shouldnt be duplicated' do
@@ -35,7 +35,7 @@ feature 'Admin register subsidiary' do
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
-    expect(page).to have_content('Filial já existente')
+    expect(page).to have_content('Nome já está em uso')
   end
 
   scenario 'and the cnpj must be valid' do

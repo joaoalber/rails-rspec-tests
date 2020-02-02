@@ -1,0 +1,19 @@
+---
+pt-BR:
+  subsidiaries:
+    create:
+      success: 'Filial registrada com sucesso'
+    update:
+      success: 'Filial atualizada com sucesso'
+    destroy:
+      success: 'Filial deletada com sucesso'
+  activerecord:
+    models:
+      subsidiary:
+        one: 'Filial'
+        other: 'Filiais'
+    attributes:
+      subsidiary:
+        name: 'Nome'
+        address: 'Endereço'
+        cnpj: 'CNPJ'

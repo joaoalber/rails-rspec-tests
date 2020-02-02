@@ -8,15 +8,15 @@
 <%= form_for @subsidiary do |f| %>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <%= f.label :name, 'Nome' %>
+            <%= f.label :name %>
             <%= f.text_field :name, class: "col", placeholder: "Loca Car" %>
         </div>
         <div class="form-group col-md-6">
-            <%= f.label :cnpj, 'CNPJ' %>
+            <%= f.label :cnpj %>
             <%= f.text_field :cnpj, class: "col", placeholder: "75.980.885/0001-31" %>
         </div>
         <div class="form-group col-md-12">
-            <%= f.label :address, 'Endereço' %>
+            <%= f.label :address %>
             <%= f.text_field :address, class: "col", placeholder: "Av. das Américas, 419" %>
         </div>
     </div>

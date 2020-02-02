@@ -12,7 +12,7 @@ feature 'Admin edits manufacturer' do
     find('.btn.btn-danger').click
 
     expect(Manufacturer.exists?(manufacturer.id)).to eq(false)
-    expect(page).to have_content('Fabricante deletada com sucesso')
+    expect(page).to have_content('Fabricante deletado com sucesso')
     expect(page).to_not have_content('Fiat')
   end
 

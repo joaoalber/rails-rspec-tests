@@ -1,0 +1,17 @@
+---
+pt-BR:
+  manufacturers:
+    create:
+      success: 'Fabricante registrada com sucesso'
+    update:
+      success: 'Fabricante atualizada com sucesso'
+    destroy:
+      success: 'Fabricante deletado com sucesso'
+  activerecord:
+    models:
+      manufacturer:
+        one: 'Fabricante'
+        other: 'Fabricantes'
+    attributes:
+      manufacturer:
+        name: 'Nome'

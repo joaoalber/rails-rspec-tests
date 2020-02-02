@@ -12,7 +12,7 @@ class RentalsController < ApplicationController
   def edit; end
 
   def update
-    return redirect_to @rental, notice: 'Locação atualizada com sucesso' if @rental.update(rental_params)
+    return redirect_to @rental, notice: t('.success') if @rental.update(rental_params)
 
     render :edit
   end
@@ -25,7 +25,7 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(rental_params)
     @rental.user = current_user
-    return redirect_to @rental, notice: 'Locação agendada com sucesso' if @rental.save
+    return redirect_to @rental, notice: t('.success') if @rental.save
 
     load_dependencies
     render :new

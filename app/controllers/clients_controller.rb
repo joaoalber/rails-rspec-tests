@@ -12,7 +12,7 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
-    return redirect_to @client, notice: 'Cliente cadastrado com sucesso' if @client.save
+    return redirect_to @client, notice: t('.success') if @client.save
 
     render :new
   end
@@ -24,12 +24,12 @@ class ClientsController < ApplicationController
   def update
     return unless @client.update(client_params)
 
-    redirect_to @client, notice: 'Cliente atualizado com sucesso'
+    redirect_to @client, notice: t('.success')
   end
 
   def destroy
     @client = Client.find(params[:id])
-    return redirect_to clients_path, notice: 'Cliente deletado com sucesso' if @client.destroy
+    return redirect_to clients_path, notice: t('.success') if @client.destroy
 
     render :index
   end

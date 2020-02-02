@@ -11,13 +11,13 @@ feature 'Admin register client' do
 
     fill_in 'Nome', with: 'Joao'
     fill_in 'CPF', with: '1231231231'
-    fill_in 'Email', with: 'team@.com'
+    fill_in 'E-mail', with: 'team@.com'
     click_on 'Enviar'
 
     expect(page).to have_content('Joao')
     expect(page).to have_content('1231231231')
     expect(page).to have_content('team@.com')
-    expect(page).to have_content('Cliente cadastrado com sucesso')
+    expect(page).to have_content('Cliente registrado com sucesso')
   end
 
   scenario 'and must be authenticated' do

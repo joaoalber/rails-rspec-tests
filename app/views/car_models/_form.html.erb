@@ -8,27 +8,27 @@
 <%= form_for @car_model do |f| %>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <%= f.label :name, 'Nome' %>
+            <%= f.label :name %>
             <%= f.text_field :name, class: "col-md", placeholder: "Onyx" %>
         </div>
         <div class="form-group col-md-6">
-            <%= f.label :year, 'Ano' %>
+            <%= f.label :year %>
             <%= f.text_field :year, class: "col-md", placeholder: "2020" %>
         </div>
         <div class="form-group col-md-6">
-            <%= f.label :motorization, 'Cavalos' %>
+            <%= f.label :motorization %>
             <%= f.text_field :motorization, class: "col-md", placeholder: "2.0" %>
         </div>
         <div class="form-group col-md-3">
-            <%= f.label :manufacturer_id, "Fabricante" %>
+            <%= f.label :manufacturer_id %>
             <%= f.collection_select :manufacturer_id, @manufacturers, :id, :name, {include_blank: false}, {class: 'custom-select'} %>
         </div>
         <div class="form-group col-md-3">
-            <%= f.label :car_category_id, 'Categoria' %>
+            <%= f.label :car_category_id %>
             <%= f.collection_select :car_category_id, @car_categories, :id, :name, {include_blank: false}, {class: 'custom-select'} %>
         </div>
         <div class="form-group col-md-12">
-            <%= f.label :fuel_type, 'Tipo de Combustivel' %>
+            <%= f.label :fuel_type %>
             <%= f.text_field :fuel_type, class: "col-md", placeholder: "Gasolina" %>
         </div>
     </div>

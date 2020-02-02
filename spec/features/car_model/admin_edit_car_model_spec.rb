@@ -18,9 +18,9 @@ feature 'Admin edits car model' do
     fill_in 'Nome', with: 'Modelo B'
     fill_in 'Ano', with: '1994'
     select 'Fabricante B', from: 'Fabricante'
-    fill_in 'Cavalos', with: '1200'
+    fill_in 'Motorização', with: '1200'
     select 'Categoria A', from: 'Categoria'
-    fill_in 'Combustivel', with: 'Alcool'
+    fill_in 'Tipo de combustível', with: 'Alcool'
 
     click_on 'Enviar'
 

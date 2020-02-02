@@ -8,15 +8,15 @@
 <%= form_for @client do |f| %>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <%= f.label :name, 'Nome' %>
+      <%= f.label :name %>
       <%= f.text_field :name, class: "col", placeholder: "João da Silva" %>
     </div>
     <div class="form-group col-md-6">
-		  <%= f.label :cpf, 'CPF' %>
+		  <%= f.label :cpf %>
       <%= f.text_field :cpf, class: "col", placeholder: "123.456.789-10" %>
     </div>
     <div class="form-group col-md-12">
-		  <%= f.label :email, 'Email' %>
+		  <%= f.label :email %>
       <%= f.text_field :email, class: "col", placeholder: "joao@email.com" %>
     </div>
   </div>

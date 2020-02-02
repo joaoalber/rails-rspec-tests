@@ -1,0 +1,25 @@
+---
+pt-BR:
+  rentals:
+    create:
+      success: 'Locação agendada  com sucesso'
+    update:
+      success: 'Locação atualizada com sucesso'
+    confirm_start:
+      success: 'Locação efetivada com sucesso'
+    search:
+      blank: 'Você deve preencher o campo de busca'
+  activerecord:
+    models:
+      rental:
+        one: 'Locação'
+        other: 'Locações'
+    attributes:
+      rental:
+        code: 'Código'
+        start_date: 'Data de início'
+        end_date: 'Data de fim'
+        car_category_id: 'Categoria do carro'
+        car_category: 'Categoria do carro'
+        client_id: 'Cliente'
+        client: 'Cliente'

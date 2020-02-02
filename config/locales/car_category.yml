@@ -1,0 +1,20 @@
+---
+pt-BR:
+  car_categories:
+    create:
+      success: 'Categoria de carro registrada com sucesso'
+    update:
+      success: 'Categoria de carro atualizada com sucesso'
+    destroy:
+      success: 'Categoria de carro deletada com sucesso'
+  activerecord:
+    models:
+      car_category:
+        one: 'Categoria de carro'
+        other: 'Categorias de carros'
+    attributes:
+      car_category:
+        name: 'Nome'
+        daily_rate: 'Diária'
+        car_insurance: 'Seguro'
+        third_party_insurance: 'Seguro contra terceiros'

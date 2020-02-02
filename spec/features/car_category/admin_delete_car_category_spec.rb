@@ -12,7 +12,7 @@ feature 'Admin destroy car category' do
     find('.btn.btn-danger').click
 
     expect(CarCategory.exists?(car_category.id)).to eq(false)
-    expect(page).to have_content('Categoria deletada com sucesso')
+    expect(page).to have_content('Categoria de carro deletada com sucesso')
     expect(page).to_not have_content('Categoria X')
   end
 

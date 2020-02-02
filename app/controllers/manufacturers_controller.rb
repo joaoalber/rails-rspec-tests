@@ -11,9 +11,9 @@ class ManufacturersController < ApplicationController
   def edit; end
 
   def update
-    return unless @manufacturer.update(manufacturer_params)
+    return render :edit unless @manufacturer.update(manufacturer_params)
 
-    redirect_to @manufacturer, notice: 'Fabricante atualizada com sucesso'
+    redirect_to @manufacturer, notice: t('.success')
   end
 
   def new
@@ -24,13 +24,13 @@ class ManufacturersController < ApplicationController
     @manufacturer = Manufacturer.new(manufacturer_params)
     return render :new unless @manufacturer.save
 
-    redirect_to @manufacturer, notice: 'Fabricante de carro cadastrada com sucesso'
+    redirect_to @manufacturer, notice: t('.success')
   end
 
   def destroy
     return render :index unless @manufacturer.destroy
 
-    redirect_to manufacturers_path, notice: 'Fabricante deletada com sucesso'
+    redirect_to manufacturers_path, notice: t('.success')
   end
 
   private
