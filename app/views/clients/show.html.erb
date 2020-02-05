@@ -1,11 +1,11 @@
 <div class="item-show">	
-	<strong>Nome:</strong>
+	<strong><%= CarCategory.human_attribute_name(:name) %>:</strong>
 	<%= @client.name %>
 	<br>
-	<strong>CPF:</strong>
+	<strong><%= CarCategory.human_attribute_name(:cpf) %>:</strong>
 	<%= @client.cpf %>
 	<br>
-	<strong>Email:</strong>
+	<strong><%= CarCategory.human_attribute_name(:email) %>:</strong>
 	<%= @client.email %>
 	<br>
 </div>
