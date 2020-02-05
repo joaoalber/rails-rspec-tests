@@ -1,20 +1,20 @@
 <div class="item-show">
-	<strong>Nome:</strong>
+	<strong><%= CarModel.human_attribute_name(:name) %>:</strong>
 	<%= @car_model.name %>
 	<br>
-	<strong>Ano:</strong>
+	<strong><%= CarModel.human_attribute_name(:year) %>:</strong>
 	<%= @car_model.year %>
 	<br>
-	<strong>Fabricante:</strong>
+	<strong><%= CarModel.human_attribute_name(:manufacturer) %>:</strong>
 	<%= @car_model.manufacturer.name %>
 	<br>
-	<strong>Motor:</strong>
+	<strong><%= CarModel.human_attribute_name(:motorization) %>:</strong>
 	<%= @car_model.motorization %>
 	<br>
-	<strong>Categoria:</strong>
+	<strong><%= CarModel.human_attribute_name(:car_category) %>:</strong>
 	<%= @car_model.car_category.name %>
 	<br>
-	<strong>Tipo de Combustível:</strong>
+	<strong><%= CarModel.human_attribute_name(:fuel_type) %>:</strong>
 	<%= @car_model.fuel_type %>
 	<br>
 </div>
