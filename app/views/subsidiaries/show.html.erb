@@ -1,11 +1,11 @@
 <div class="item-show">
-	<strong>Nome:</strong>
+	<strong><%= Subsidiary.human_attribute_name(:name) %>:</strong>
 	<%= @subsidiary.name %>
 	<br>
-	<strong>CNPJ:</strong>
+	<strong><%= Subsidiary.human_attribute_name(:cnpj) %>:</strong>
 	<%= @subsidiary.cnpj %>
 	<br>
-	<strong>Endereço:</strong>
+	<strong><%= Subsidiary.human_attribute_name(:address) %>:</strong>
 	<%= @subsidiary.address %>
 	<br>
 </div>
