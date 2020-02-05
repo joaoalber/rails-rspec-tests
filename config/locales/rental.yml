@@ -23,3 +23,5 @@ pt-BR:
         car_category: 'Categoria do carro'
         client_id: 'Cliente'
         client: 'Cliente'
+        client_email: 'Email do cliente'
+        user_email: 'Email do funcionário'

@@ -3,25 +3,25 @@
 <% end %>
 
 <div class="item-show">	
-	<strong>Código da Locação:</strong>
+	<strong><%= Rental.human_attribute_name(:code) %>:</strong>
 	<%= @rental.code %>
 	<br>
-	<strong>Data de Ínicio:</strong>
-	<%= @rental.start_date.strftime("%d/%m/%Y") %>
+	<strong><%= Rental.human_attribute_name(:start_date) %>:</strong>
+	<%= I18n.localize(@rental.start_date, formats: :default) %>
 	<br>
-	<strong>Data de término:</strong>
-	<%= @rental.end_date.strftime("%d/%m/%Y") %>
+	<strong><%= Rental.human_attribute_name(:end_date) %>:</strong>
+	<%= I18n.localize(@rental.end_date, formats: :default) %>
 	<br>
-	<strong>Email do funcionário:</strong>
+	<strong><%= Rental.human_attribute_name(:user_email) %>:</strong>
 	<%= @rental.user.email %>
 	<br>
-	<strong>Categoria:</strong>
+	<strong><%= Rental.human_attribute_name(:car_category) %>:</strong>
 	<%= @rental.car_category.name %>
 	<br>
-	<strong>Documento do Cliente:</strong>
+	<strong><%= Rental.human_attribute_name(:client) %>:</strong>
 	<%= "#{@rental.client.cpf} - #{@rental.client.name}" %>
 	<br>
-	<strong>Email do Cliente:</strong>
+	<strong><%= Rental.human_attribute_name(:client_email) %>:</strong>
 	<%= @rental.client.email %>
 	<br>
 </div>
