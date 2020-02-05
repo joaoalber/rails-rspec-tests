@@ -1,15 +1,15 @@
 <div class="item-show">	
-	<strong>Categoria:</strong>
+	<strong><%= CarCategory.human_attribute_name(:name) %>:</strong>
 	<%= @car_category.name %>
 	<br>
-	<strong>Diária:</strong>
-	R$<%= @car_category.daily_rate %>
+	<strong><%= CarCategory.human_attribute_name(:daily_rate) %>:</strong>
+	<%= number_to_currency(@car_category.daily_rate) %>
 	<br>
-	<strong>Seguro:</strong>
-	R$<%= @car_category.car_insurance %>
+	<strong><%= CarCategory.human_attribute_name(:car_insurance) %>:</strong>
+	<%= number_to_currency(@car_category.car_insurance) %>
 	<br>
-	<strong>Seguro contra terceiros:</strong>
-	R$<%= @car_category.third_party_insurance %>
+	<strong><%= CarCategory.human_attribute_name(:third_party_insurance) %>:</strong>
+	<%= number_to_currency(@car_category.third_party_insurance) %>
 	<br>
 </div>
 
