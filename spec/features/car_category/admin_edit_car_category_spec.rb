@@ -17,9 +17,9 @@ feature 'Admin edits car category' do
     click_on 'Enviar'
 
     expect(page).to have_content('Categoria Y')
-    expect(page).to have_content('1050.56')
-    expect(page).to have_content('1023.32')
-    expect(page).to have_content('100')
+    expect(page).to have_content('R$ 1.050,56')
+    expect(page).to have_content('R$ 1.023,32')
+    expect(page).to have_content('R$ 100,00')
   end
 
   scenario 'and must be authenticated' do

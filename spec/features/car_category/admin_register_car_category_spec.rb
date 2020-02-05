@@ -16,9 +16,9 @@ feature 'Admin register car category' do
     click_on 'Enviar'
 
     expect(page).to have_content('Categoria A')
-    expect(page).to have_content('10.5')
-    expect(page).to have_content('200.32')
-    expect(page).to have_content('100.35')
+    expect(page).to have_content('R$ 10,50')
+    expect(page).to have_content('R$ 200,32')
+    expect(page).to have_content('R$ 100,35')
     expect(page).to have_content('Categoria de carro registrada com sucesso')
   end
 
