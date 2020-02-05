@@ -24,7 +24,7 @@ feature 'Admin register car' do
     expect(page).to have_content('CIC3301')
     expect(page).to have_content('Vermelho')
     expect(page).to have_content('Uno')
-    expect(page).to have_content('15')
+    expect(page).to have_content('15 Quilômetros')
     expect(page).to have_content('Américas - Filial I')
   end
 

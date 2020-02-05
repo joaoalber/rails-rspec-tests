@@ -1,5 +1,9 @@
 ---
 pt-BR:
+  distance:
+      unit:
+        one: "Quilômetro"
+        other: "Quilômetros"          
   activerecord:
     errors:
       messages:

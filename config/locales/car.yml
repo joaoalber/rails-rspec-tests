@@ -17,3 +17,4 @@ pt-BR:
         subsidiary: 'Filial'
         car_model_id: 'Modelo do carro'
         car_model: 'Modelo do carro'
+        status: 'Status'

@@ -18,7 +18,7 @@ feature 'Admin view cars' do
     expect(page).to have_content('DXC2132')
     expect(page).to have_content('Vermelho')
     expect(page).to have_content('Américas - Filial I')
-    expect(page).to have_content('50')
+    expect(page).to have_content('50 Quilômetros')
   end
 
   scenario 'and return to home page' do

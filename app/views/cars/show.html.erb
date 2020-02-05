@@ -1,20 +1,20 @@
 <div class="item-show">		
-	<strong>Nome:</strong>
+	<strong><%= CarCategory.human_attribute_name(:name) %>:</strong>
 	<%= @car.car_model.name %>
 	<br>
-	<strong>Placa:</strong>
+	<strong><%= CarCategory.human_attribute_name(:license_place) %>:</strong>
 	<%= @car.license_plate %>
 	<br>
-	<strong>Cor:</strong>
+	<strong><%= CarCategory.human_attribute_name(:color) %>:</strong>
 	<%= @car.color %>
 	<br>	
-	<strong>Filial:</strong>
+	<strong><%= CarCategory.human_attribute_name(:subsidiary) %>:</strong>
 	<%= @car.subsidiary.name %>
 	<br>	
-	<strong>Quilometragem:</strong>
-	<%= @car.mileage %>KM
+	<strong><%= CarCategory.human_attribute_name(:mileage) %>:</strong>
+	<%= number_to_human(@car.mileage, units: :distance) %>
 	<br>
-	<strong>Status:</strong>
+	<strong><%= CarCategory.human_attribute_name(:status) %>:</strong>
 	<%= @car.status %>
 	<br>
 </div>
