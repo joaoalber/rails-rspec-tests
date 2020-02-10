@@ -3,6 +3,8 @@ pt-BR:
   cars:
     create:
       success: 'Carro registrado com sucesso'
+    create_csv:
+      success: 'Carros registrados com sucesso'
   activerecord:
     models:
       car:
@@ -18,3 +20,7 @@ pt-BR:
         car_model_id: 'Modelo do carro'
         car_model: 'Modelo do carro'
         status: 'Status'
+        # Para o CSV
+        quilometragem: 'mileage'
+        cor: 'color'
+        placa: 'license_plate'

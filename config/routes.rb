@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :manufacturers, :subsidiaries, :car_categories, :car_models, :clients
   resources :car_rentals, only: [:show, :create]
   resources :cars, only: [:index, :show, :new, :create]
+  get 'new_csv_car', to: 'cars#new_csv'
+  post 'create_csv', to: 'cars#create_csv'
   resources :rentals do
     get 'search', on: :collection
     get 'effect', on: :member

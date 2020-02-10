@@ -71,4 +71,24 @@ feature 'Admin register car' do
 
     expect(page).to have_content('Placa já está em uso')
   end
+
+  scenario 'via csv file' do
+    user = create(:user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category)
+    create(:subsidiary)
+    create(:car_model, car_category: car_category, manufacturer: manufacturer)
+
+    login_as(user, scope: :user)
+    visit cars_path
+
+    click_on 'Importar CSV'
+
+    select 'Américas - Filial I', from: 'Filial'
+    select 'Uno', from: 'Modelo'
+    page.attach_file('Arquivo CSV', Rails.root + 'spec/fixtures/files/carros.csv')
+
+    click_on 'Enviar'
+    expect(Car.find_by(license_plate: 'GYC-1836').identification).to eq 'Uno - GYC-1836 - azul'
+  end
 end
