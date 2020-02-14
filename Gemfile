@@ -62,6 +62,7 @@ end
 
 group :test do
   # Acceptance test framework for web applications
+  gem 'simplecov', require: false
   gem 'capybara', '~> 3.29'
 end
 
