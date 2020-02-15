@@ -62,8 +62,8 @@ end
 
 group :test do
   # Acceptance test framework for web applications
-  gem 'simplecov', require: false
   gem 'capybara', '~> 3.29'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

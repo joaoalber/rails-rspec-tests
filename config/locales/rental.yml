@@ -25,3 +25,6 @@ pt-BR:
         client: 'Cliente'
         client_email: 'Email do cliente'
         user_email: 'Email do funcionário'
+        cancelled: 'Cancelado'
+        in_progress: 'Em progresso'
+        scheduled: 'Agendado'

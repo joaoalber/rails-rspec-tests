@@ -16,9 +16,9 @@ feature 'Admin effect rental' do
     fill_in 'Pesquisar', with: rental.code.to_s
     click_on 'Buscar'
     click_on rental.code.to_s
-    click_on 'Efetivar locação'
+    click_on 'Efetivar'
     within("div#car-#{car.id}") do
-      click_on 'Efetivar locação'
+      click_on 'Efetivar'
     end
 
     expect(page).to have_content('Locação efetivada com sucesso')
@@ -38,15 +38,15 @@ feature 'Admin effect rental' do
     login_as(user, scope: :user)
     visit rentals_path
     click_on rental.code.to_s
-    click_on 'Efetivar locação'
+    click_on 'Efetivar'
     within("div#car-#{car.id}") do
-      click_on 'Efetivar locação'
+      click_on 'Efetivar'
     end
     visit rentals_path
     click_on rental.code.to_s
 
-    expect(page).to have_content('Locação em progresso')
-    expect(page).to_not have_content('Efetivar locação')
+    expect(page).to have_content('Em progresso')
+    expect(page).to_not have_content('Efetivar')
   end
 
   scenario 'and car must be unavailable' do
@@ -63,9 +63,9 @@ feature 'Admin effect rental' do
     login_as(user, scope: :user)
     visit rentals_path
     click_on rental.code.to_s
-    click_on 'Efetivar locação'
+    click_on 'Efetivar'
     within("div#car-#{car.id}") do
-      click_on 'Efetivar locação'
+      click_on 'Efetivar'
     end
 
     expect(car.reload).to be_unavailable

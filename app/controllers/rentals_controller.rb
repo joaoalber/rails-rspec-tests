@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_rental, only: %i[update show edit effect]
+  before_action :load_rental, only: %i[update show edit effect cancel]
   before_action :load_dependencies, only: [:edit]
 
   def index
@@ -40,6 +40,11 @@ class RentalsController < ApplicationController
     @rental.in_progress!
     @car_rental = CarRental.new
     @cars = @rental.car_category.cars
+  end
+
+  def cancel
+    @rental.cancelled!
+    render :show
   end
 
   private

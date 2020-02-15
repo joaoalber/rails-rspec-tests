@@ -15,7 +15,7 @@
 	<%= number_to_human(@car.mileage, units: :distance) %>
 	<br>
 	<strong><%= Car.human_attribute_name(:status) %>:</strong>
-	<%= @car.status %>
+	<%= Car.human_attribute_name(@car.status) %>
 	<br>
 </div>
 

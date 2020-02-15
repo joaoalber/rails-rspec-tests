@@ -9,9 +9,13 @@ class Rental < ApplicationRecord
   validate :end_date_cannot_be_before_start_date
   validate :must_have_available_cars
 
-  enum status: { scheduled: 0, in_progress: 5 }
+  enum status: { scheduled: 0, in_progress: 5, cancelled: 10 }
 
   before_create :generate_code
+
+  def self.can_be_cancelled?(rental)
+    rental.start_date.day - DateTime.current.day >= 2
+  end
 
   private
 
@@ -49,7 +53,7 @@ class Rental < ApplicationRecord
       rental.start_date.between?(start_date, end_date) || rental.end_date.between?(start_date, end_date)
     end
     # Comparando se o número de carros é maior que o número de rentals
-    cars.length > rentals.length
+    cars.length >= rentals.length
   end
 
   def generate_code

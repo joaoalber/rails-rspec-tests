@@ -71,10 +71,9 @@ feature 'User register rental' do
     user = create(:user)
     manufacturer = create(:manufacturer)
     car_category = create(:car_category)
-    subsidiary = create(:subsidiary)
+    create(:subsidiary)
     client = create(:client)
-    car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
-    create(:car, car_model: car_model, subsidiary: subsidiary)
+    create(:car_model, car_category: car_category, manufacturer: manufacturer)
     create(:rental, client: client, car_category: car_category, user: user)
 
     login_as(user, scope: :user)

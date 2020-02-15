@@ -20,6 +20,8 @@ pt-BR:
         car_model_id: 'Modelo do carro'
         car_model: 'Modelo do carro'
         status: 'Status'
+        available: 'Disponível'
+        unavailable: 'Indisponível'
         # Para o CSV
         quilometragem: 'mileage'
         cor: 'color'

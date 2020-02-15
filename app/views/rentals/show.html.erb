@@ -1,6 +1,4 @@
-<% if @rental.status == 'in_progress' %>
-	<h1>Locação em progresso</h1>
-<% end %>
+<span class="badge badge-info"><div>Status: <%= Rental.human_attribute_name(@rental.status) %></div></span>
 
 <div class="item-show">	
 	<strong><%= Rental.human_attribute_name(:code) %>:</strong>
@@ -39,4 +37,5 @@
 </div>
 
 
-<%= link_to 'Efetivar locação', effect_rental_path(@rental), class: 'btn btn-primary' if @rental.status == 'scheduled' %>
+<%= link_to 'Efetivar', effect_rental_path(@rental), class: 'btn btn-primary' if @rental.status == 'scheduled' %>
+<%= link_to 'Cancelar', cancel_rental_path(@rental), method: :patch, class: 'btn btn-danger' if Rental.can_be_cancelled?(@rental) && !@rental.cancelled? %>
