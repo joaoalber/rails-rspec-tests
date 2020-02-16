@@ -1,0 +1,7 @@
+ <% @accessories.each do |accessory| %>
+    <%= link_to accessory.name, accessory, class: "card bg-light mb-3" %>
+<% end %>
+
+ <div class="aligned-buttons">
+    <%= link_to 'Registrar novo acessório', new_accessory_path, class: 'btn btn-primary' %>
+</div>

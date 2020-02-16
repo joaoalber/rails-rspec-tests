@@ -1,0 +1,16 @@
+---
+pt-BR:
+  accessories:
+    create:
+      success: 'Acessório registrado com sucesso'
+  activerecord:
+    models:
+      accessory:
+        one: 'Acessório'
+        other: 'Acessórios'
+    attributes:
+      accessory:
+        name: 'Nome'
+        daily_rate: 'Diária'
+        description: 'Descrição'
+        image: 'Imagem'

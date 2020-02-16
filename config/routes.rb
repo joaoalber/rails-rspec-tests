@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :manufacturers, :subsidiaries, :car_categories, :car_models, :clients
   resources :car_rentals, only: [:show, :create]
   resources :cars, only: [:index, :show, :new, :create]
+  resources :accessories, only: [:index, :show, :new, :create]
   resources :rentals do
     get 'search', on: :collection
     get 'effect', on: :member

@@ -1,0 +1,19 @@
+<div class="item-show">	
+	<strong><%= Accessory.human_attribute_name(:name) %>:</strong>
+	<%= @accessory.name %>
+	<br>
+	<strong><%= Accessory.human_attribute_name(:daily_rate) %>:</strong>
+	<%= number_to_currency(@accessory.daily_rate) %>
+	<br>
+	<strong><%= Accessory.human_attribute_name(:description) %>:</strong>
+	<%= @accessory.description %>
+	<br>
+	<strong><%= CarCategory.human_attribute_name(:image) %>:</strong>
+	<%= image_tag @accessory.image %>
+	<br>
+</div>
+
+<hr>
+<div class="aligned-buttons">
+	<%= link_to 'Voltar', accessories_path, class: 'btn btn-primary' %>
+</div>
