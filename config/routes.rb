@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :rentals do
     get 'search', on: :collection
     get 'effect', on: :member
-    patch 'cancel', on: :member
+    get 'cancel', on: :member
+    patch 'finish_cancel', on: :member
     resources :car_rentals, only: [:create]
   end
 

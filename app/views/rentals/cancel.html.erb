@@ -1,0 +1,11 @@
+<h1>Cancelamento</h1>
+
+<%= form_with url: {action: :finish_cancel}, model: @rental, local: true do |f| %>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <%= f.label :cancellation_reason, 'Motivo de cancelamento' %>
+						<%= f.text_field :cancellation_reason, class: "col" %>
+        </div>
+    </div>
+    <%= f.submit 'Enviar', class: "btn btn-primary mt-3 float-right" %>
+<% end %>

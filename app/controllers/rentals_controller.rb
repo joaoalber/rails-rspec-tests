@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_rental, only: %i[update show edit effect cancel]
+  before_action :load_rental, only: %i[update show edit effect cancel finish_cancel]
   before_action :load_dependencies, only: [:edit]
 
   def index
@@ -43,8 +43,14 @@ class RentalsController < ApplicationController
   end
 
   def cancel
+    render :cancel
+  end
+
+  def finish_cancel
     @rental.cancelled!
-    render :show
+    return render :cancel unless @rental.update(rental_params)
+
+    redirect_to rental_path(@rental)
   end
 
   private
@@ -59,6 +65,6 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:rental).permit(:start_date, :end_date, :car_category_id, :client_id)
+    params.require(:rental).permit(:start_date, :end_date, :car_category_id, :client_id, :cancellation_reason)
   end
 end

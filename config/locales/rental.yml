@@ -28,3 +28,4 @@ pt-BR:
         cancelled: 'Cancelado'
         in_progress: 'Em progresso'
         scheduled: 'Agendado'
+        cancellation_reason: 'Motivo de cancelamento'
