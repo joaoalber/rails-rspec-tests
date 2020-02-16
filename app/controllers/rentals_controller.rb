@@ -65,7 +65,24 @@ class RentalsController < ApplicationController
     redirect_to rental_path(@rental)
   end
 
+  def report
+    @car_categories = CarCategory.all
+  end
+
+  def generate_report
+    @rentals = Rental.where(car_category: params[:car_category_id])
+    @rentals = @rentals.to_ary
+    transform_hash_into_date
+    @rentals.select! { |rental| rental.start_date.between?(@start_date, @end_date) }
+    render :generated_report
+  end
+
   private
+
+  def transform_hash_into_date
+    @start_date = params[:start_date].to_date
+    @end_date = params[:end_date].to_date
+  end
 
   def load_dependencies
     @car_categories = CarCategory.all

@@ -1,0 +1,13 @@
+<h1>Período selecionado: <%= I18n.localize(@start_date, formats: :default)%> até <%= I18n.localize(@end_date, formats: :default) %></h1>
+<% if @rentals.empty? %>
+	<div>Nenhuma locação para o período registrado</div>
+<% else %>
+	<h1>Categoria: <%= @rentals.first.car_category.name %></h1>
+	<h3>Total de locações durante o período: <%= @rentals.length %></h3>
+	<% @rentals.each do |rental| %>
+		<div>Código: <%= rental.code %></div>
+		<div>Data de início: <%= I18n.localize(rental.start_date, formats: :default) %></div>
+		<div>Data de término: <%= I18n.localize(rental.end_date, formats: :default) %></div>
+		<hr>
+	<% end %>
+<% end %>

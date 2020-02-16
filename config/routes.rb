@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get 'new_accessory', on: :member
     post 'create_accessory', on: :member
     patch 'finish_cancel', on: :member
+    get 'report', on: :collection
+    post 'generate_report', on: :collection
     resources :car_rentals, only: [:create]
   end
 

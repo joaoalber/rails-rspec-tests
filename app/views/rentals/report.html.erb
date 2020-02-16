@@ -1,0 +1,17 @@
+<%= form_with url: generate_report_rentals_path, local: true do |f| %>
+  <div class="form-row">
+        <div class="form-group col-md-6">
+            <%= f.label :start_date, 'Início' %>
+						<%= f.date_field :start_date, class: "col" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= f.label :end_date, 'Fim' %>
+					<%= f.date_field :end_date, class: "col" %>
+        </div>
+        <div class="form-group col-md-12">
+          <%= f.label :car_category_id, 'Categoria' %>
+    			<%= f.collection_select(:car_category_id, @car_categories, :id, :name, {include_blank: false}, {class: 'custom-select'}) %>
+        </div>
+    </div>
+		<%= f.submit 'Gerar Relatório', class: "btn btn-primary mt-3" %>
+<% end %>
