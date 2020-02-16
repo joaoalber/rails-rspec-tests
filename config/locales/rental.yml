@@ -1,8 +1,10 @@
 ---
 pt-BR:
   rentals:
+    create_accessory:
+      success: 'Acessório adicionado com sucesso'
     create:
-      success: 'Locação agendada  com sucesso'
+      success: 'Locação agendada com sucesso'
     update:
       success: 'Locação atualizada com sucesso'
     confirm_start:
@@ -29,3 +31,4 @@ pt-BR:
         in_progress: 'Em progresso'
         scheduled: 'Agendado'
         cancellation_reason: 'Motivo de cancelamento'
+        accessory_id: 'ID do Acessório'

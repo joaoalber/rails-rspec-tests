@@ -26,6 +26,11 @@
 	<strong><%= Rental.human_attribute_name(:client_email) %>:</strong>
 	<%= @rental.client.email %>
 	<br>
+	<% if !@rental.accessory_id.nil? %>
+		<strong><%= Rental.human_attribute_name(:accessory_id) %>:</strong>
+		<%= @rental.accessory_id %>
+		<br>
+	<% end %>
 </div>
 
 <div class="icons-show">
@@ -42,4 +47,5 @@
 
 
 <%= link_to 'Efetivar', effect_rental_path(@rental), class: 'btn btn-primary' if @rental.status == 'scheduled' %>
+<%= link_to 'Adicionar Acessório', new_accessory_rental_path(@rental), class: 'btn btn-primary' %>
 <%= link_to 'Cancelar', cancel_rental_path(@rental), class: 'btn btn-danger' if Rental.can_be_cancelled?(@rental) && !@rental.cancelled? && !@rental.in_progress? %>

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     get 'effect', on: :member
     get 'cancel', on: :member
+    get 'new_accessory', on: :member
+    post 'create_accessory', on: :member
     patch 'finish_cancel', on: :member
     resources :car_rentals, only: [:create]
   end

@@ -1,0 +1,9 @@
+<%= form_with local: true, url: {action: :create_accessory} do |f| %>
+		<div class="form-row">
+				<div class="form-group col-md-6">
+            <%= f.label :accessory_id, 'Acessório' %>
+    				<%= f.collection_select(:accessory_id, @accessories, :id, :name, {include_blank: false}, {class: 'custom-select'}) %>
+        </div>
+    </div>
+    <%= f.submit 'Adicionar', class: "btn btn-primary mt-3" %>
+<% end %>

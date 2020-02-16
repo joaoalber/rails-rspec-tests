@@ -36,6 +36,18 @@ class RentalsController < ApplicationController
     @rentals = Rental.where('code LIKE ?', "%#{@search.upcase}%")
   end
 
+  def new_accessory
+    @accessories = Accessory.all
+  end
+
+  def create_accessory
+    @rental = Rental.find(params[:id])
+    return redirect_to @rental, notice: t('.success') if @rental.update(accessory_id: params[:accessory_id])
+
+    @accessories = Accessory.all
+    render :new_accessory
+  end
+
   def effect
     @rental.in_progress!
     @car_rental = CarRental.new

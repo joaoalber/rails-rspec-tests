@@ -70,4 +70,26 @@ feature 'Admin effect rental' do
 
     expect(car.reload).to be_unavailable
   end
+
+  scenario 'and user should add accesory' do
+    accessory = create(:accessory, :with_image)
+    user = create(:user)
+    manufacturer = create(:manufacturer)
+    car_category = create(:car_category)
+    subsidiary = create(:subsidiary)
+    client = create(:client)
+    car_model = create(:car_model, car_category: car_category, manufacturer: manufacturer)
+    create(:car, car_model: car_model, subsidiary: subsidiary)
+    rental = create(:rental, client: client, car_category: car_category, user: user)
+
+    login_as(user, scope: :user)
+    visit rentals_path
+    click_on rental.code.to_s
+    click_on 'Adicionar Acessório'
+    select 'GPS', from: 'Acessório'
+    click_on 'Adicionar'
+
+    expect(page).to have_content('Acessório adicionado com sucesso')
+    expect(page).to have_content(accessory.id)
+  end
 end

@@ -4,6 +4,7 @@ class Rental < ApplicationRecord
   belongs_to :user
   has_one :car_rental, dependent: :destroy
   has_one :car, through: :car_rentals
+  has_one :accessory, dependent: :destroy
 
   validate :start_date_cannot_be_in_the_past
   validate :end_date_cannot_be_before_start_date
