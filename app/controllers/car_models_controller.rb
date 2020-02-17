@@ -31,8 +31,6 @@ class CarModelsController < ApplicationController
 
   def destroy
     return redirect_to car_models_path, notice: t('.success') if @car_model.destroy
-
-    render :index
   end
 
   private

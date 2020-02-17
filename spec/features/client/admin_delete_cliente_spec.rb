@@ -17,7 +17,7 @@ feature 'Admin destroy client' do
   end
 
   scenario 'and must be authenticated' do
-    page.driver.submit :delete, car_category_path('whatever'), {}
+    page.driver.submit :delete, client_path(2), {}
 
     expect(current_path).to eq(new_user_session_path)
   end

@@ -10,8 +10,6 @@ class AccessoriesController < ApplicationController
   def create
     @accessory = Accessory.new(accessory_params)
     return redirect_to @accessory, notice: t('.success') if @accessory.save
-
-    render :new
   end
 
   def show

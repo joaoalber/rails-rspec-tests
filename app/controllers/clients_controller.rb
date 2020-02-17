@@ -13,8 +13,6 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     return redirect_to @client, notice: t('.success') if @client.save
-
-    render :new
   end
 
   def show; end
@@ -30,8 +28,6 @@ class ClientsController < ApplicationController
   def destroy
     @client = Client.find(params[:id])
     return redirect_to clients_path, notice: t('.success') if @client.destroy
-
-    render :index
   end
 
   private

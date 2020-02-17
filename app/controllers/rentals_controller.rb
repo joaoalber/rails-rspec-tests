@@ -13,8 +13,6 @@ class RentalsController < ApplicationController
 
   def update
     return redirect_to @rental, notice: t('.success') if @rental.update(rental_params)
-
-    render :edit
   end
 
   def new
@@ -43,9 +41,6 @@ class RentalsController < ApplicationController
   def create_accessory
     @rental = Rental.find(params[:id])
     return redirect_to @rental, notice: t('.success') if @rental.update(accessory_id: params[:accessory_id])
-
-    @accessories = Accessory.all
-    render :new_accessory
   end
 
   def effect

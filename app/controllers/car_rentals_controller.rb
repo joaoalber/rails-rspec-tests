@@ -2,11 +2,10 @@ class CarRentalsController < ApplicationController
   before_action :new_car, only: %i[create]
 
   def create
-    if @car_rental.save!
-      Car.find(@car_rental.car_id).unavailable!
-      return redirect_to rental_path(@car_rental.rental_id), notice: 'Locação efetivada com sucesso'
-    end
-    render :effect_rental_path
+    return unless @car_rental.save!
+
+    Car.find(@car_rental.car_id).unavailable!
+    redirect_to rental_path(@car_rental.rental_id), notice: 'Locação efetivada com sucesso'
   end
 
   def new_car
